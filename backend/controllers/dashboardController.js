@@ -1,6 +1,6 @@
 const Notice = require("../models/Notice");
 const Gallery = require("../models/Gallery");
-const ELearning = require("../models/ELearning");
+const ELearning = require("../models/Elearning");
 const Schedule = require("../models/Schedule");
 
 const getDashboardStats = async (req, res) => {
