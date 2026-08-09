@@ -26,21 +26,59 @@ togglePassword.addEventListener("click", () => {
 const loginForm = document.querySelector(".login-form");
 const loginBtn = document.querySelector(".login-btn");
 
-loginForm.addEventListener("submit",(e)=>{
+loginForm.addEventListener("submit", async (e) => {
 
     e.preventDefault();
 
     loginBtn.innerHTML = "Logging In...";
-
     loginBtn.disabled = true;
 
-    loginBtn.style.opacity = ".8";
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
 
-    setTimeout(()=>{
+    try {
 
-        window.location.href="dashboard.html";
+        const res = await fetch("https://noor-ed-society-backend.onrender.com/api/admin/login", {
 
-    },1200);
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                username,
+                password
+            })
+
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("username", data.username);
+
+            window.location.href = "dashboard.html";
+
+        } else {
+
+            alert(data.message);
+
+            loginBtn.innerHTML = "LOGIN";
+            loginBtn.disabled = false;
+
+        }
+
+    } catch (err) {
+
+        alert("Server Error");
+
+        loginBtn.innerHTML = "LOGIN";
+        loginBtn.disabled = false;
+
+    }
 
 });
 

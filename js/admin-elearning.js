@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api/elearning";
+const API = "https://noor-ed-society-backend.onrender.com/api/elearning";
 
 const materialForm = document.getElementById("materialForm");
 const materialId = document.getElementById("materialId");
@@ -35,18 +35,28 @@ async function loadMaterials() {
 
         const params = new URLSearchParams();
 
-        if (filterClass.value !== "all") {
+        if (
+            filterClass &&
+            filterClass.value !== "all"
+        ) {
+
             params.append(
                 "classNumber",
                 filterClass.value
             );
+
         }
 
-        if (filterCategory.value !== "all") {
+        if (
+            filterCategory &&
+            filterCategory.value !== "all"
+        ) {
+
             params.append(
                 "category",
                 filterCategory.value
             );
+
         }
 
         const url =
@@ -54,39 +64,62 @@ async function loadMaterials() {
                 ? `${API}?${params.toString()}`
                 : API;
 
-        const response = await fetch(url);
+        const response =
+            await fetch(url);
 
         if (!response.ok) {
-            throw new Error("Failed to load materials");
+
+            throw new Error(
+                `Server error: ${response.status}`
+            );
+
         }
 
-        const result = await response.json();
+        const result =
+            await response.json();
 
         if (
             !result.success ||
             !Array.isArray(result.data)
         ) {
-            throw new Error("Invalid server response");
+
+            throw new Error(
+                "Invalid server response"
+            );
+
         }
 
-        materialCount.textContent =
-            `${result.count} material${result.count === 1 ? "" : "s"}`;
+        if (materialCount) {
+
+            materialCount.textContent =
+                `${result.count} material${result.count === 1 ? "" : "s"}`;
+
+        }
 
         renderMaterials(result.data);
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Load materials error:",
+            error
+        );
 
-        materialCount.textContent =
-            "Unable to load";
+        if (materialCount) {
+
+            materialCount.textContent =
+                "Unable to load";
+
+        }
 
         materialsContainer.innerHTML = `
             <div class="empty">
                 Unable to load E-Learning materials.
             </div>
         `;
+
     }
+
 }
 
 function renderMaterials(materials) {
@@ -102,6 +135,7 @@ function renderMaterials(materials) {
         `;
 
         return;
+
     }
 
     materials.forEach(material => {
@@ -109,12 +143,14 @@ function renderMaterials(materials) {
         const item =
             document.createElement("div");
 
-        item.className = "material-item";
+        item.className =
+            "material-item";
 
         const fileUrl =
             getFileUrl(material.file);
 
         item.innerHTML = `
+
             <div class="material-info">
 
                 <h3>
@@ -158,160 +194,207 @@ function renderMaterials(materials) {
                     View
                 </a>
 
-                <button
-                    type="button"
-                    class="edit-btn"
-                    onclick="editMaterial('${escapeAttribute(material._id)}')"
-                >
-                    <i class="fa-solid fa-pen"></i>
-                    Edit
-                </button>
 
                 <button
                     type="button"
                     class="delete-btn"
-                    onclick="deleteMaterial('${escapeAttribute(material._id)}')"
+                    onclick="deleteMaterial('${material._id}')"
                 >
                     <i class="fa-solid fa-trash"></i>
                     Delete
                 </button>
 
             </div>
+
         `;
 
         materialsContainer.appendChild(item);
 
     });
+
 }
 
-materialForm.addEventListener("submit", async e => {
+if (materialForm) {
 
-    e.preventDefault();
+    materialForm.addEventListener(
+        "submit",
+        async e => {
 
-    const id = materialId.value;
+            e.preventDefault();
 
-    if (!title.value.trim()) {
-        alert("Please enter a title.");
-        return;
-    }
+            const id =
+                materialId.value.trim();
 
-    if (!classNumber.value) {
-        alert("Please select a class.");
-        return;
-    }
+            if (!title.value.trim()) {
 
-    if (!category.value) {
-        alert("Please select a category.");
-        return;
-    }
+                alert(
+                    "Please enter a material title."
+                );
 
-    if (!id && !file.files.length) {
-        alert("Please select a file.");
-        return;
-    }
+                return;
 
-    try {
+            }
 
-        saveBtn.disabled = true;
+            if (!classNumber.value) {
 
-        saveBtn.innerHTML =
-            `<i class="fa-solid fa-spinner fa-spin"></i> Uploading...`;
+                alert(
+                    "Please select a class."
+                );
 
-        const formData =
-            new FormData();
+                return;
 
-        formData.append(
-            "title",
-            title.value.trim()
-        );
+            }
 
-        formData.append(
-            "classNumber",
-            classNumber.value
-        );
+            if (!category.value) {
 
-        formData.append(
-            "category",
-            category.value
-        );
+                alert(
+                    "Please select a category."
+                );
 
-        formData.append(
-            "description",
-            description.value.trim()
-        );
+                return;
 
-        if (file.files.length) {
+            }
 
-            formData.append(
-                "file",
-                file.files[0]
-            );
+            if (
+                !id &&
+                (!file || !file.files.length)
+            ) {
 
-        }
+                alert(
+                    "Please select a file."
+                );
 
-        const response =
-            await fetch(
-                id
-                    ? `${API}/${id}`
-                    : API,
-                {
-                    method: id
-                        ? "PUT"
-                        : "POST",
-                    body: formData
+                return;
+
+            }
+
+            try {
+
+                saveBtn.disabled = true;
+
+                saveBtn.innerHTML = `
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    Uploading...
+                `;
+
+                const formData =
+                    new FormData();
+
+                formData.append(
+                    "title",
+                    title.value.trim()
+                );
+
+                formData.append(
+                    "classNumber",
+                    classNumber.value
+                );
+
+                formData.append(
+                    "category",
+                    category.value
+                );
+
+                formData.append(
+                    "description",
+                    description.value.trim()
+                );
+
+                if (
+                    file &&
+                    file.files.length
+                ) {
+
+                    formData.append(
+                        "file",
+                        file.files[0]
+                    );
+
                 }
-            );
 
-        const result =
-            await response.json();
+                const response =
+                    await fetch(
+                        id
+                            ? `${API}/${id}`
+                            : API,
+                        {
+                            method:
+                                id
+                                    ? "PUT"
+                                    : "POST",
 
-        if (
-            !response.ok ||
-            !result.success
-        ) {
+                            body:
+                                formData
+                        }
+                    );
 
-            throw new Error(
-                result.message ||
-                "Operation failed"
-            );
+                const result =
+                    await response.json();
+
+                if (
+                    !response.ok ||
+                    !result.success
+                ) {
+
+                    throw new Error(
+                        result.message ||
+                        "Upload failed"
+                    );
+
+                }
+
+                alert(
+                    id
+                        ? "Material updated successfully."
+                        : "Material uploaded successfully."
+                );
+
+                resetForm();
+
+                await loadMaterials();
+
+            } catch (error) {
+
+                console.error(
+                    "Upload error:",
+                    error
+                );
+
+                alert(
+                    error.message
+                );
+
+            } finally {
+
+                saveBtn.disabled =
+                    false;
+
+                saveBtn.innerHTML =
+                    materialId.value
+                        ? `
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Update Material
+                          `
+                        : `
+                            <i class="fa-solid fa-plus"></i>
+                            Add Material
+                          `;
+
+            }
 
         }
+    );
 
-        alert(
-            id
-                ? "Material updated successfully."
-                : "Material uploaded successfully."
-        );
-
-        resetForm();
-
-        await loadMaterials();
-
-    } catch (error) {
-
-        console.error(error);
-
-        alert(error.message);
-
-    } finally {
-
-        saveBtn.disabled = false;
-
-        saveBtn.innerHTML =
-            materialId.value
-                ? `<i class="fa-solid fa-floppy-disk"></i> Update Material`
-                : `<i class="fa-solid fa-plus"></i> Add Material`;
-
-    }
-
-});
+}
 
 async function editMaterial(id) {
 
     try {
 
         const response =
-            await fetch(`${API}/${id}`);
+            await fetch(
+                `${API}/${id}`
+            );
 
         const result =
             await response.json();
@@ -346,15 +429,26 @@ async function editMaterial(id) {
         description.value =
             material.description || "";
 
-        file.value = "";
+        if (file) {
+            file.value = "";
+        }
 
-        document.getElementById(
-            "formTitle"
-        ).textContent =
-            "Edit E-Learning Material";
+        const formTitle =
+            document.getElementById(
+                "formTitle"
+            );
 
-        saveBtn.innerHTML =
-            `<i class="fa-solid fa-floppy-disk"></i> Update Material`;
+        if (formTitle) {
+
+            formTitle.textContent =
+                "Edit E-Learning Material";
+
+        }
+
+        saveBtn.innerHTML = `
+            <i class="fa-solid fa-floppy-disk"></i>
+            Update Material
+        `;
 
         cancelBtn.style.display =
             "block";
@@ -391,11 +485,17 @@ async function editMaterial(id) {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Edit error:",
+            error
+        );
 
-        alert(error.message);
+        alert(
+            error.message
+        );
 
     }
+
 }
 
 async function deleteMaterial(id) {
@@ -442,11 +542,17 @@ async function deleteMaterial(id) {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Delete error:",
+            error
+        );
 
-        alert(error.message);
+        alert(
+            error.message
+        );
 
     }
+
 }
 
 function resetForm() {
@@ -455,13 +561,22 @@ function resetForm() {
 
     materialId.value = "";
 
-    document.getElementById(
-        "formTitle"
-    ).textContent =
-        "Add E-Learning Material";
+    const formTitle =
+        document.getElementById(
+            "formTitle"
+        );
 
-    saveBtn.innerHTML =
-        `<i class="fa-solid fa-plus"></i> Add Material`;
+    if (formTitle) {
+
+        formTitle.textContent =
+            "Add E-Learning Material";
+
+    }
+
+    saveBtn.innerHTML = `
+        <i class="fa-solid fa-plus"></i>
+        Add Material
+    `;
 
     cancelBtn.style.display =
         "none";
@@ -473,12 +588,14 @@ function resetForm() {
 
     if (existingFile) {
 
-        existingFile.innerHTML = "";
+        existingFile.innerHTML =
+            "";
 
         existingFile.style.display =
             "none";
 
     }
+
 }
 
 function getFileUrl(filePath) {
@@ -496,14 +613,11 @@ function getFileUrl(filePath) {
 
     }
 
-    if (filePath.startsWith("/")) {
-
-        return `http://localhost:5000${filePath}`;
-
+     if (filePath.startsWith("/")) {
+        return `https://noor-ed-society-backend.onrender.com${filePath}`;
     }
 
-    return `http://localhost:5000/${filePath}`;
-
+    return `https://noor-ed-society-backend.onrender.com/${filePath}`;
 }
 
 function escapeHTML(value) {
@@ -529,25 +643,41 @@ function escapeAttribute(value) {
 
 }
 
-cancelBtn.addEventListener(
-    "click",
-    resetForm
-);
+if (cancelBtn) {
 
-refreshBtn.addEventListener(
-    "click",
-    loadMaterials
-);
+    cancelBtn.addEventListener(
+        "click",
+        resetForm
+    );
 
-filterClass.addEventListener(
-    "change",
-    loadMaterials
-);
+}
 
-filterCategory.addEventListener(
-    "change",
-    loadMaterials
-);
+if (refreshBtn) {
+
+    refreshBtn.addEventListener(
+        "click",
+        loadMaterials
+    );
+
+}
+
+if (filterClass) {
+
+    filterClass.addEventListener(
+        "change",
+        loadMaterials
+    );
+
+}
+
+if (filterCategory) {
+
+    filterCategory.addEventListener(
+        "change",
+        loadMaterials
+    );
+
+}
 
 if (file) {
 

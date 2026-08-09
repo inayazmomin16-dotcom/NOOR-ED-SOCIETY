@@ -1,64 +1,62 @@
-const observer = new IntersectionObserver((entries)=>{
+const API = "https://noor-ed-society-backend.onrender.com/api/gallery";
 
-    entries.forEach((entry)=>{
+/* ===========================
+   Scroll Animation
+=========================== */
 
-        if(entry.isIntersecting){
-
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
             entry.target.classList.add("show");
-
         }
-
     });
-
-},{
-    threshold:0.15
+}, {
+    threshold: 0.15
 });
 
-document.querySelectorAll(
-".page-title, .upload-card, .gallery-list, .image-card"
-).forEach((item)=>{
-
+document.querySelectorAll(".page-title, .upload-card, .gallery-list")
+.forEach((item) => {
     item.classList.add("hidden");
-
     observer.observe(item);
-
 });
 
-const fileInput = document.querySelector('input[type="file"]');
+/* ===========================
+   Image Preview
+=========================== */
 
-if(fileInput){
+const fileInput = document.getElementById("image");
 
-    fileInput.addEventListener("change",function(){
+if (fileInput) {
 
-        const file=this.files[0];
+    fileInput.addEventListener("change", function () {
 
-        if(!file) return;
+        const file = this.files[0];
 
-        const reader=new FileReader();
+        if (!file) return;
 
-        reader.onload=function(e){
+        const reader = new FileReader();
 
-            let preview=document.querySelector(".preview-image");
+        reader.onload = function (e) {
 
-            if(!preview){
+            let preview = document.querySelector(".preview-image");
 
-                preview=document.createElement("img");
+            if (!preview) {
 
-                preview.className="preview-image";
+                preview = document.createElement("img");
 
-                preview.style.width="100%";
-                preview.style.height="220px";
-                preview.style.objectFit="cover";
-                preview.style.borderRadius="18px";
-                preview.style.marginTop="18px";
-                preview.style.border="2px dashed #F8A91F";
+                preview.className = "preview-image";
+
+                preview.style.width = "100%";
+                preview.style.height = "220px";
+                preview.style.objectFit = "cover";
+                preview.style.borderRadius = "18px";
+                preview.style.marginTop = "18px";
+                preview.style.border = "2px dashed #F8A91F";
 
                 document.querySelector(".upload-form").appendChild(preview);
-
             }
 
-            preview.src=e.target.result;
-
+            preview.src = e.target.result;
         };
 
         reader.readAsDataURL(file);
@@ -67,130 +65,284 @@ if(fileInput){
 
 }
 
-const search=document.querySelector(".search-box input");
+/* ===========================
+   Upload Gallery
+=========================== */
 
-if(search){
+const form = document.getElementById("galleryForm");
 
-search.addEventListener("keyup",()=>{
+if (form) {
 
-    const value=search.value.toLowerCase();
+    form.addEventListener("submit", async (e) => {
 
-    document.querySelectorAll(".image-card").forEach((card)=>{
+        e.preventDefault();
 
-        const text=card.innerText.toLowerCase();
+        const token = localStorage.getItem("token");
 
-        if(text.includes(value)){
+        if (!token) {
+            alert("Please login first.");
+            window.location.href = "admin-login.html";
+            return;
+        }
 
-            card.style.display="flex";
+        const formData = new FormData();
 
-        }else{
+        formData.append("title", document.getElementById("title").value);
+        formData.append("category", document.getElementById("category").value);
+        formData.append("image", document.getElementById("image").files[0]);
 
-            card.style.display="none";
+        try {
+
+            const res = await fetch(API, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+                body: formData
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                alert(data.message || "Upload failed");
+                return;
+            }
+
+            alert("Image Uploaded Successfully!");
+
+            form.reset();
+
+            const preview = document.querySelector(".preview-image");
+
+            if (preview) preview.remove();
+
+            loadGallery();
+
+        }
+
+        catch (err) {
+
+            console.error(err);
+
+            alert("Upload Failed");
 
         }
 
     });
 
-});
-
 }
 
-document.querySelectorAll(".delete-btn").forEach((btn)=>{
+/* ===========================
+   Load Gallery
+=========================== */
 
-    btn.addEventListener("click",()=>{
+async function loadGallery() {
 
-        const confirmDelete=confirm("Delete this image?");
+    try {
 
-        if(confirmDelete){
+        const res = await fetch(API);
 
-            btn.closest(".image-card").remove();
+        const result = await res.json();
+
+        const galleryList = document.getElementById("galleryList");
+
+        if (!galleryList) return;
+
+        galleryList.innerHTML = "";
+
+        if (!result.data || result.data.length === 0) {
+
+            galleryList.innerHTML = `
+                <p style="color:white;text-align:center;">
+                    No Images Uploaded Yet
+                </p>
+            `;
+
+            return;
 
         }
 
-    });
+        result.data.forEach((item) => {
 
-});
+            galleryList.innerHTML += `
 
-document.querySelectorAll(".edit-btn").forEach((btn)=>{
+            <div class="image-card">
 
-    btn.addEventListener("click",()=>{
+                <img
+                   src="https://noor-ed-society-backend.onrender.com${item.image}"
+                    alt="${item.title}">
 
-        alert("Edit feature will be connected with the database later.");
+                <div class="image-details">
 
-    });
+                    <h3>${item.title}</h3>
 
-});
+                    <p>Category: ${item.category}</p>
 
-const form=document.querySelector(".upload-form");
+                    <div class="image-actions">
 
-if(form){
+                        <button
+                            class="delete-btn"
+                            onclick="deleteGallery('${item._id}')">
 
-form.addEventListener("submit",(e)=>{
+                            <i class="fa-solid fa-trash"></i>
 
-    e.preventDefault();
+                            Delete
 
-    alert("Image upload will be connected to MySQL & PHP later.");
+                        </button>
 
-});
+                    </div>
+
+                </div>
+
+            </div>
+
+            `;
+
+        });
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+    }
 
 }
 
-document.querySelectorAll(".image-card").forEach((card)=>{
+/* ===========================
+   Delete Gallery
+=========================== */
 
-    card.addEventListener("mouseenter",()=>{
+async function deleteGallery(id) {
 
-        card.style.transform="translateY(-6px) scale(1.02)";
+    if (!confirm("Delete this image?")) return;
+
+    const token = localStorage.getItem("token");
+
+    try {
+
+        const res = await fetch(`${API}/${id}`, {
+
+            method: "DELETE",
+
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+
+        });
+
+        if (res.ok) {
+
+            alert("Image Deleted Successfully!");
+
+            loadGallery();
+
+        }
+
+        else {
+
+            alert("Delete Failed");
+
+        }
+
+    }
+
+    catch (err) {
+
+        console.error(err);
+
+    }
+
+}
+
+/* ===========================
+   Search
+=========================== */
+
+const search = document.querySelector(".search-box input");
+
+if (search) {
+
+    search.addEventListener("keyup", () => {
+
+        const value = search.value.toLowerCase();
+
+        document.querySelectorAll(".image-card").forEach((card) => {
+
+            if (card.innerText.toLowerCase().includes(value)) {
+
+                card.style.display = "block";
+
+            }
+
+            else {
+
+                card.style.display = "none";
+
+            }
+
+        });
 
     });
 
-    card.addEventListener("mouseleave",()=>{
+}
 
-        card.style.transform="translateY(0) scale(1)";
-
-    });
-
-});
-
-window.addEventListener("load",()=>{
-
-    document.body.style.opacity="1";
-
-});
+/* ===========================
+   Mobile Menu
+=========================== */
 
 const menuBtn = document.querySelector(".menu-btn");
+
 const mobileMenu = document.getElementById("mobileMenu");
-const menuIcon = menuBtn.querySelector("i");
 
-menuBtn.addEventListener("click", () => {
+if (menuBtn && mobileMenu) {
 
-    mobileMenu.classList.toggle("show");
+    const menuIcon = menuBtn.querySelector("i");
 
-    if (mobileMenu.classList.contains("show")) {
+    menuBtn.addEventListener("click", () => {
 
-        menuIcon.classList.remove("fa-bars");
-        menuIcon.classList.add("fa-xmark");
+        mobileMenu.classList.toggle("show");
 
-    } else {
+        if (mobileMenu.classList.contains("show")) {
 
-        menuIcon.classList.remove("fa-xmark");
-        menuIcon.classList.add("fa-bars");
+            menuIcon.classList.replace("fa-bars", "fa-xmark");
 
-    }
+        }
 
-});
+        else {
 
-document.addEventListener("click", (e) => {
+            menuIcon.classList.replace("fa-xmark", "fa-bars");
 
-    if (
-        !menuBtn.contains(e.target) &&
-        !mobileMenu.contains(e.target)
-    ) {
+        }
 
-        mobileMenu.classList.remove("show");
+    });
 
-        menuIcon.classList.remove("fa-xmark");
-        menuIcon.classList.add("fa-bars");
+    document.addEventListener("click", (e) => {
 
-    }
+        if (
+            !menuBtn.contains(e.target) &&
+            !mobileMenu.contains(e.target)
+        ) {
+
+            mobileMenu.classList.remove("show");
+
+            menuIcon.classList.replace("fa-xmark", "fa-bars");
+
+        }
+
+    });
+
+}
+
+/* ===========================
+   Page Load
+=========================== */
+
+window.addEventListener("load", () => {
+
+    document.body.style.opacity = "1";
+
+    loadGallery();
 
 });

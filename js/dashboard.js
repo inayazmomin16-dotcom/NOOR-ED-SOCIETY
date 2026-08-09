@@ -1,3 +1,10 @@
+// Check if admin is logged in
+const token = localStorage.getItem("token");
+
+if (!token) {
+    window.location.href = "admin-login.html";
+}
+
 const observer = new IntersectionObserver((entries)=>{
 
     entries.forEach((entry)=>{
@@ -39,38 +46,6 @@ cards.forEach((card)=>{
         card.style.transform="translateY(0) scale(1)";
 
     });
-
-});
-
-const stats=document.querySelectorAll(".stat-card h2");
-
-stats.forEach((counter)=>{
-
-    let target=parseInt(counter.innerText);
-
-    if(isNaN(target)) return;
-
-    let count=0;
-
-    const speed=25;
-
-    const update=()=>{
-
-        if(count<target){
-
-            count++;
-
-            counter.innerText=count;
-
-            setTimeout(update,speed);
-
-        }
-
-    };
-
-    counter.innerText="0";
-
-    update();
 
 });
 
@@ -143,3 +118,51 @@ document.addEventListener("click", (e) => {
     }
 
 });
+
+const logoutBtn = document.querySelector(".logout-btn");
+
+logoutBtn.addEventListener("click", (e) => {
+
+    e.preventDefault();
+
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+
+    window.location.href = "admin-login.html";
+
+});
+async function loadDashboardStats() {
+
+    try {
+
+       const response = await fetch(
+    "https://noor-ed-society-backend.onrender.com/api/dashboard"
+);
+
+        const result = await response.json();
+
+        if (result.success) {
+
+            document.getElementById("galleryCount").textContent =
+                result.data.galleryCount;
+
+            document.getElementById("noticeCount").textContent =
+                result.data.noticeCount;
+
+            document.getElementById("materialCount").textContent =
+                result.data.materialCount;
+
+            document.getElementById("scheduleCount").textContent =
+                result.data.scheduleCount;
+
+        }
+
+    } catch (error) {
+
+        console.error("Dashboard Error:", error);
+
+    }
+
+}
+
+loadDashboardStats();

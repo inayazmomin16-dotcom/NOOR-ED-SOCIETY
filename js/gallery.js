@@ -1,6 +1,12 @@
+const API = "https://noor-ed-society-backend.onrender.com/api/gallery";
+
+/* ===========================
+   Scroll Animation
+=========================== */
+
 const observer = new IntersectionObserver((entries) => {
 
-    entries.forEach((entry) => {
+    entries.forEach(entry => {
 
         if (entry.isIntersecting) {
 
@@ -11,10 +17,10 @@ const observer = new IntersectionObserver((entries) => {
     });
 
 }, {
-    threshold: 0.15
+    threshold:0.15
 });
 
-document.querySelectorAll("section, .gallery-card, .footer").forEach((item) => {
+document.querySelectorAll("section,.footer").forEach(item=>{
 
     item.classList.add("hidden");
 
@@ -22,49 +28,124 @@ document.querySelectorAll("section, .gallery-card, .footer").forEach((item) => {
 
 });
 
-const filters = document.querySelectorAll(".filter");
 
-filters.forEach((button) => {
+/* ===========================
+   Load Gallery
+=========================== */
 
-    button.addEventListener("click", () => {
+async function loadGallery(){
 
-        filters.forEach((btn) => btn.classList.remove("active"));
+    try{
 
-        button.classList.add("active");
+        const res = await fetch(API);
+
+        const result = await res.json();
+
+        const galleryGrid = document.getElementById("galleryGrid");
+
+        galleryGrid.innerHTML = "";
+
+        result.data.forEach(item=>{
+
+            galleryGrid.innerHTML += `
+
+            <div class="gallery-card"
+                 data-category="${item.category.toLowerCase()}">
+
+                <img
+                   src="https://noor-ed-society-backend.onrender.com${item.image}"
+                    alt="${item.title}">
+
+                <div class="gallery-info">
+
+                    <h3>${item.title}</h3>
+
+                    <p>${item.category}</p>
+
+                </div>
+
+            </div>
+
+            `;
+
+        });
+
+        enableLightbox();
+
+    }
+
+    catch(err){
+
+        console.error(err);
+
+    }
+
+}
+
+
+/* ===========================
+   Search
+=========================== */
+
+const searchInput = document.querySelector(".search-box input");
+
+if(searchInput){
+
+    searchInput.addEventListener("keyup",()=>{
+
+        const value = searchInput.value.toLowerCase();
+
+        document.querySelectorAll(".gallery-card").forEach(card=>{
+
+            const text = card.innerText.toLowerCase();
+
+            card.style.display =
+                text.includes(value)
+                ? "block"
+                : "none";
+
+        });
 
     });
 
-});
+}
 
-const cards = document.querySelectorAll(".gallery-card");
 
-cards.forEach((card) => {
+/* ===========================
+   Filter Buttons
+=========================== */
 
-    card.addEventListener("click", () => {
+document.querySelectorAll(".filter").forEach(btn=>{
 
-        const img = card.querySelector("img");
+    btn.addEventListener("click",()=>{
 
-        const overlay = document.createElement("div");
+        document
+            .querySelectorAll(".filter")
+            .forEach(b=>b.classList.remove("active"));
 
-        overlay.className = "lightbox";
+        btn.classList.add("active");
 
-        overlay.innerHTML = `
+        const filter = btn.dataset.filter.toLowerCase();
 
-            <span class="close-lightbox">&times;</span>
+        document.querySelectorAll(".gallery-card").forEach(card=>{
 
-            <img src="${img.src}" alt="Gallery Image">
+            if(filter==="all"){
 
-        `;
+                card.style.display="block";
 
-        document.body.appendChild(overlay);
+            }
 
-        document.body.style.overflow = "hidden";
+            else{
 
-        overlay.addEventListener("click", () => {
+                card.style.display =
 
-            overlay.remove();
+                card.dataset.category===filter
 
-            document.body.style.overflow = "auto";
+                ? "block"
+
+                : "none";
+
+            }
 
         });
 
@@ -72,25 +153,73 @@ cards.forEach((card) => {
 
 });
 
-document.querySelectorAll(".filter").forEach((btn) => {
 
-    btn.addEventListener("click", function(e){
+/* ===========================
+   Lightbox
+=========================== */
 
-        const circle = document.createElement("span");
+function enableLightbox(){
 
-        circle.classList.add("ripple");
+    document.querySelectorAll(".gallery-card").forEach(card=>{
 
-        const rect = this.getBoundingClientRect();
+        card.onclick = ()=>{
 
-        circle.style.left = (e.clientX - rect.left) + "px";
+            const img = card.querySelector("img");
 
-        circle.style.top = (e.clientY - rect.top) + "px";
+            const overlay = document.createElement("div");
 
-        this.appendChild(circle);
+            overlay.className="lightbox";
+
+            overlay.innerHTML=`
+
+                <span class="close-lightbox">&times;</span>
+
+                <img src="${img.src}">
+
+            `;
+
+            document.body.appendChild(overlay);
+
+            document.body.style.overflow="hidden";
+
+            overlay.onclick=()=>{
+
+                overlay.remove();
+
+                document.body.style.overflow="auto";
+
+            };
+
+        };
+
+    });
+
+}
+
+
+/* ===========================
+   Ripple Effect
+=========================== */
+
+document.querySelectorAll(".filter").forEach(btn=>{
+
+    btn.addEventListener("click",function(e){
+
+        const ripple=document.createElement("span");
+
+        ripple.className="ripple";
+
+        const rect=this.getBoundingClientRect();
+
+        ripple.style.left=(e.clientX-rect.left)+"px";
+
+        ripple.style.top=(e.clientY-rect.top)+"px";
+
+        this.appendChild(ripple);
 
         setTimeout(()=>{
 
-            circle.remove();
+            ripple.remove();
 
         },600);
 
@@ -98,40 +227,64 @@ document.querySelectorAll(".filter").forEach((btn) => {
 
 });
 
-const menuBtn = document.querySelector(".menu-btn");
-const mobileMenu = document.getElementById("mobileMenu");
-const menuIcon = menuBtn.querySelector("i");
 
-menuBtn.addEventListener("click", () => {
+/* ===========================
+   Mobile Menu
+=========================== */
+
+const menuBtn=document.querySelector(".menu-btn");
+
+const mobileMenu=document.getElementById("mobileMenu");
+
+const menuIcon=menuBtn.querySelector("i");
+
+menuBtn.addEventListener("click",()=>{
 
     mobileMenu.classList.toggle("show");
 
-    if (mobileMenu.classList.contains("show")) {
+    if(mobileMenu.classList.contains("show")){
 
-        menuIcon.classList.remove("fa-bars");
-        menuIcon.classList.add("fa-xmark");
+        menuIcon.classList.replace("fa-bars","fa-xmark");
 
-    } else {
+    }
 
-        menuIcon.classList.remove("fa-xmark");
-        menuIcon.classList.add("fa-bars");
+    else{
+
+        menuIcon.classList.replace("fa-xmark","fa-bars");
 
     }
 
 });
 
-document.addEventListener("click", (e) => {
+document.addEventListener("click",(e)=>{
 
-    if (
-        !menuBtn.contains(e.target) &&
+    if(
+
+        !menuBtn.contains(e.target)
+
+        &&
+
         !mobileMenu.contains(e.target)
-    ) {
+
+    ){
 
         mobileMenu.classList.remove("show");
 
-        menuIcon.classList.remove("fa-xmark");
-        menuIcon.classList.add("fa-bars");
+        menuIcon.classList.replace("fa-xmark","fa-bars");
 
     }
+
+});
+
+
+/* ===========================
+   Initial Load
+=========================== */
+
+window.addEventListener("load",()=>{
+
+    document.body.style.opacity="1";
+
+    loadGallery();
 
 });
