@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | Noor Education Society</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+
+    <link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+
+<body>
+
+<div class="phone">
+
+<header class="header">
+
+    <div class="header-left">
+
+        <img src="assets/images/logo1.png"
+             alt="School Logo"
+             class="header-logo">
+
+        <div>
+
+            <h2>Admin Dashboard</h2>
+
+            <p>Noor Education Society</p>
+
+        </div>
+
+    </div>
+
+    <button class="menu-btn">
+
+        <i class="fa-solid fa-bars"></i>
+
+    </button>
+
+</header>
+
+<nav class="mobile-menu" id="mobileMenu">
+
+    <a href="home.html">
+        <i class="fa-solid fa-house"></i>
+        Home
+    </a>
+
+    <a href="about.html">
+        <i class="fa-solid fa-school"></i>
+        About
+    </a>
+
+    <a href="notice.html">
+        <i class="fa-solid fa-bullhorn"></i>
+        Notice Board
+    </a>
+
+    <a href="gallery.html">
+        <i class="fa-solid fa-image"></i>
+        Gallery
+    </a>
+
+    <a href="elearning.html">
+        <i class="fa-solid fa-book-open"></i>
+        E-Learning
+    </a>
+
+    <a href="schedule.html">
+        <i class="fa-solid fa-calendar-days"></i>
+        Schedule
+    </a>
+
+    <a href="contact.html">
+        <i class="fa-solid fa-phone"></i>
+        Contact
+    </a>
+
+    <a href="admin-login.html" class="admin-link">
+        <i class="fa-solid fa-user-shield"></i>
+        Admin Portal
+    </a>
+
+</nav>
+
+<section class="welcome">
+
+    <div>
+
+        <h1>
+
+            Welcome Back 👋
+
+        </h1>
+
+        <p>
+
+             Manage notices, gallery, study materials, schedules, contact details, and website settings.
+
+        </p>
+
+    </div>
+
+    <img src="assets/images/logo1.png"
+         alt="Logo"
+         class="welcome-logo">
+
+</section>
+
+<section class="stats">
+
+<div class="stat-card">
+
+    <i class="fa-regular fa-images"></i>
+
+    <h2 id="galleryCount">0</h2>
+
+    <p>Gallery</p>
+
+</div>
+
+<div class="stat-card">
+
+    <i class="fa-solid fa-bell"></i>
+
+    <h2 id="noticeCount">0</h2>
+
+    <p>Notices</p>
+
+</div>
+
+<div class="stat-card">
+
+    <i class="fa-solid fa-book-open"></i>
+
+    <h2 id="materialCount">0</h2>
+
+    <p>Study Materials</p>
+
+</div>
+
+<div class="stat-card">
+
+    <i class="fa-solid fa-calendar-days"></i>
+
+    <h2 id="scheduleCount">0</h2>
+
+    <p>Events</p>
+
+</div>
+</section>
+
+<section class="management">
+
+    <h2>
+
+        Management
+
+    </h2>
+
+    <div class="dashboard-grid">
+
+        <a href="gallery-admin.html" class="dashboard-card">
+
+    <i class="fa-regular fa-images"></i>
+
+    <h3>Gallery</h3>
+
+</a>
+
+<a href="notice-admin.html" class="dashboard-card">
+
+    <i class="fa-solid fa-bell"></i>
+
+    <h3>Notice Board</h3>
+
+</a>
+
+<a href="elearning-admin.html" class="dashboard-card">
+
+    <i class="fa-solid fa-book-open-reader"></i>
+
+    <h3>E-Learning</h3>
+
+</a>
+
+<a href="schedule-admin.html" class="dashboard-card">
+
+    <i class="fa-regular fa-calendar-days"></i>
+
+    <h3>Schedule</h3>
+
+</a>
+
+<a href="contact-admin.html" class="dashboard-card">
+
+    <i class="fa-solid fa-phone"></i>
+
+    <h3>Contact</h3>
+
+</a>
+
+<a href="settings-admin.html" class="dashboard-card">
+
+    <i class="fa-solid fa-gear"></i>
+
+    <h3>Settings</h3>
+
+</a>
+
+</div>
+
+</section>
+
+<section class="activity">
+
+    <h2>Recent Activity</h2>
+
+    <div class="activity-list">
+
+        <div class="activity-item">
+
+            <i class="fa-solid fa-image"></i>
+
+            <span>Gallery image uploaded</span>
+
+        </div>
+
+        <div class="activity-item">
+
+            <i class="fa-solid fa-bell"></i>
+
+            <span>Notice published</span>
+
+        </div>
+
+        <div class="activity-item">
+         
+            <i class="fa-solid fa-book-open"></i>
+            
+            <span>Study material uploaded</span>
+
+        </div>
+
+        <div class="activity-item">
+        
+            <i class="fa-solid fa-calendar-days"></i>
+            
+            <span>Upcoming event added</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="logout-section">
+
+    <a href="admin-login.html" class="logout-btn">
+
+        <i class="fa-solid fa-right-from-bracket"></i>
+
+        Logout
+
+    </a>
+
+</section>
+
+<script src="js/dashboard.js"></script>
+
+</div>
+
+</body>
+
+</html>>

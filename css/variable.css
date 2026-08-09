@@ -1,0 +1,29 @@
+:root{
+
+    --primary-dark:#0A1128;
+
+    --dark-blue:#0F1A3C;
+
+    --mid-blue:#243C8E;
+
+    --blue:#162558;
+
+    --deep-blue:#101C42;
+
+    --white:#FFFFFF;
+
+    --black:#000000;
+
+    --gold-1:#A66C19;
+
+    --gold-2:#FFA527;
+
+    --gold-3:#EDD568;
+
+    --gold-4:#996317;
+
+    --button-radius:60px;
+
+    --font-main:'Inter',sans-serif;
+
+}
