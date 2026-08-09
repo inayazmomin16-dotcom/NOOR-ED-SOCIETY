@@ -6,27 +6,18 @@ const {
     getNotices,
     updateNotice,
     deleteNotice
-} = require("../controllers/noticecontroller");
+} = require("../controllers/noticeController");
 
-const protect = require("../middleware/authMiddleware");
+// Create Notice
+router.post("/", createNotice);
 
-
-// =========================
-// PUBLIC
-// =========================
-
+// Get All Notices
 router.get("/", getNotices);
 
+// Update Notice
+router.put("/:id", updateNotice);
 
-// =========================
-// ADMIN
-// =========================
-
-router.post("/", protect, createNotice);
-
-router.put("/:id", protect, updateNotice);
-
-router.delete("/:id", protect, deleteNotice);
-
+// Delete Notice
+router.delete("/:id", deleteNotice);
 
 module.exports = router;
