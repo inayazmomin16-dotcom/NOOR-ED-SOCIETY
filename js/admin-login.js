@@ -1,7 +1,9 @@
 const password = document.getElementById("password");
 const togglePassword = document.getElementById("togglePassword");
 
-togglePassword.addEventListener("click", () => {
+if (togglePassword && password) {
+
+    togglePassword.addEventListener("click", () => {
 
     if(password.type === "password"){
 
@@ -22,6 +24,7 @@ togglePassword.addEventListener("click", () => {
     }
 
 });
+}
 
 const loginForm = document.querySelector(".login-form");
 const loginBtn = document.querySelector(".login-btn");
@@ -33,8 +36,19 @@ loginForm.addEventListener("submit", async (e) => {
     loginBtn.innerHTML = "Logging In...";
     loginBtn.disabled = true;
 
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+    const usernameInput = loginForm.querySelector("#username");
+const passwordInput = loginForm.querySelector("#password");
+
+if (!usernameInput || !passwordInput) {
+    console.error("Username or password input not found.");
+    alert("Login form error. Please refresh the page.");
+    loginBtn.innerHTML = "LOGIN";
+    loginBtn.disabled = false;
+    return;
+}
+
+const username = usernameInput.value.trim();
+const password = passwordInput.value;
 
     try {
 
@@ -118,39 +132,43 @@ window.addEventListener("load",()=>{
 
 const menuBtn = document.querySelector(".menu-btn");
 const mobileMenu = document.getElementById("mobileMenu");
-const menuIcon = menuBtn.querySelector("i");
 
-menuBtn.addEventListener("click", () => {
+if (menuBtn && mobileMenu) {
 
-    mobileMenu.classList.toggle("show");
+    const menuIcon = menuBtn.querySelector("i");
 
-    if (mobileMenu.classList.contains("show")) {
+    menuBtn.addEventListener("click", () => {
 
-        menuIcon.classList.remove("fa-bars");
-        menuIcon.classList.add("fa-xmark");
+        mobileMenu.classList.toggle("show");
 
-    } else {
+        if (mobileMenu.classList.contains("show")) {
 
-        menuIcon.classList.remove("fa-xmark");
-        menuIcon.classList.add("fa-bars");
+            menuIcon.classList.remove("fa-bars");
+            menuIcon.classList.add("fa-xmark");
 
-    }
+        } else {
 
-});
+            menuIcon.classList.remove("fa-xmark");
+            menuIcon.classList.add("fa-bars");
 
-document.addEventListener("click", (e) => {
+        }
 
-    if (
-        !menuBtn.contains(e.target) &&
-        !mobileMenu.contains(e.target)
-    ) {
+    });
 
-        mobileMenu.classList.remove("show");
+    document.addEventListener("click", (e) => {
 
-        menuIcon.classList.remove("fa-xmark");
-        menuIcon.classList.add("fa-bars");
+        if (
+            !menuBtn.contains(e.target) &&
+            !mobileMenu.contains(e.target)
+        ) {
 
-    }
+            mobileMenu.classList.remove("show");
 
-});
+            menuIcon.classList.remove("fa-xmark");
+            menuIcon.classList.add("fa-bars");
 
+        }
+
+    });
+
+}
