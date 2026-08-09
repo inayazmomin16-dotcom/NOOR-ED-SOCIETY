@@ -29,7 +29,9 @@ if (togglePassword && password) {
 const loginForm = document.querySelector(".login-form");
 const loginBtn = document.querySelector(".login-btn");
 
-loginForm.addEventListener("submit", async (e) => {
+if (loginForm && loginBtn) {
+
+    loginForm.addEventListener("submit", async (e) => {
 
     e.preventDefault();
 
@@ -129,7 +131,7 @@ window.addEventListener("load",()=>{
     document.querySelector(".login-card").style.opacity="1";
 
 });
-
+}
 const menuBtn = document.querySelector(".menu-btn");
 const mobileMenu = document.getElementById("mobileMenu");
 
