@@ -1,4 +1,4 @@
-const ELearning = require("../models/ELearning");
+const Elearning = require("../models/Elearning");
 const fs = require("fs");
 const path = require("path");
 
