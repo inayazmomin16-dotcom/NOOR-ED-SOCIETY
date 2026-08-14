@@ -5,22 +5,26 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>E-Learning | Noor Education Society</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@700&display=swap"
+          rel="stylesheet">
 
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-
-    <link rel="stylesheet" href="css/elearning.css">
+    <link rel="stylesheet"
+          href="css/elearning.css">
 
 </head>
 
@@ -28,110 +32,123 @@
 
 <div class="phone">
 
-<header class="header">
+    <header class="header">
 
-    <a href="home.html" class="back-btn">
+        <a href="home.html"
+           class="back-btn">
 
-        <i class="fa-solid fa-arrow-left"></i>
+            <i class="fa-solid fa-arrow-left"></i>
 
-    </a>
+        </a>
 
-    <h1>
+        <h1>
+            E-Learning
+        </h1>
 
-        E-Learning
+        <button class="menu-btn">
 
-    </h1>
+            <i class="fa-solid fa-bars"></i>
 
-    <button class="menu-btn">
+        </button>
 
-        <i class="fa-solid fa-bars"></i>
+    </header>
 
-    </button>
 
-</header>
+    <nav class="mobile-menu"
+         id="mobileMenu">
 
-<nav class="mobile-menu" id="mobileMenu">
+        <a href="home.html">
 
-    <a href="home.html">
-        <i class="fa-solid fa-house"></i>
-        Home
-    </a>
+            <i class="fa-solid fa-house"></i>
 
-    <a href="about.html">
-        <i class="fa-solid fa-school"></i>
-        About
-    </a>
+            Home
 
-    <a href="admission.html">
-        <i class="fa-solid fa-user-graduate"></i>
-        Admissions
-    </a>
+        </a>
 
-    <a href="notice.html">
-        <i class="fa-solid fa-bullhorn"></i>
-        Notice Board
-    </a>
+        <a href="about.html">
 
-    <a href="gallery.html">
-        <i class="fa-solid fa-image"></i>
-        Gallery
-    </a>
+            <i class="fa-solid fa-school"></i>
 
-    <a href="elearning.html">
-        <i class="fa-solid fa-book-open"></i>
-        E-Learning
-    </a>
+            About
 
-    <a href="schedule.html">
-        <i class="fa-solid fa-calendar-days"></i>
-        Schedule
-    </a>
+        </a>
 
-    <a href="contact.html">
-        <i class="fa-solid fa-phone"></i>
-        Contact
-    </a>
+        <a href="notice.html">
 
-    <a href="admin-login.html" class="admin-link">
-        <i class="fa-solid fa-user-shield"></i>
-        Admin Portal
-    </a>
+            <i class="fa-solid fa-bullhorn"></i>
 
-</nav>
+            Notice Board
 
-<section class="hero">
+        </a>
 
-    <small>
+        <a href="gallery.html">
 
-        E-Learning
+            <i class="fa-solid fa-image"></i>
 
-    </small>
+            Gallery
 
-    <h2>
+        </a>
 
-        Online Learning Platform
+        <a href="elearning.html">
 
-    </h2>
+            <i class="fa-solid fa-book-open"></i>
 
-    <p>
+            E-Learning
 
-        Video lectures, PDF Notes,
-        Presentations and Study Material.
-        Learn Anytime, Anywhere.
+        </a>
 
-    </p>
+        <a href="schedule.html">
 
-</section>
+            <i class="fa-solid fa-calendar-days"></i>
 
-<section class="tab-section">
+            Schedule
 
-    <button class="tab-btn active" id="videoBtn">
+        </a>
 
-        Video Lectures
+        <a href="contact.html">
 
-    </button>
+            <i class="fa-solid fa-phone"></i>
 
-    <button class="tab-btn" id="studyBtn">
+            Contact
+
+        </a>
+
+        <a href="admin-login.html"
+           class="admin-link">
+
+            <i class="fa-solid fa-user-shield"></i>
+
+            Admin Portal
+
+        </a>
+
+    </nav>
+
+
+    <main>
+
+        <section class="hero">
+
+            <small>
+                E-Learning
+            </small>
+
+            <h2>
+                Online Learning Platform
+            </h2>
+
+<p>
+    PDF Notes, Presentations and Study Material.
+    Learn Anytime, Anywhere.
+</p>
+
+        </section>
+
+
+        <section class="learning-tabs"> 
+
+    <button class="tab-btn active"
+            id="studyBtn">
 
         Study Material
 
@@ -139,79 +156,72 @@
 
 </section>
 
-<section id="videoSection">
 
-    <div class="section-header">
+<section id="studySection"
+         class="learning-section">
+                  
 
-        <h2 class="section-title">
+        
+       
 
-            Video Lectures
+            <div class="section-header">
 
-        </h2>
+                <h2 class="section-title">
 
-        <select id="videoClassFilter">
+                    Study Material
 
-            <option value="all">All Classes</option>
+                </h2>
 
-           
-            <option value="5">Class V</option>
-            <option value="6">Class VI</option>
-            <option value="7">Class VII</option>
-            <option value="8">Class VIII</option>
-            <option value="9">Class IX</option>
-            <option value="10">Class X</option>
-            <option value="11">Class XI</option>
-            <option value="12">Class XII</option>
+                <select id="studyClassFilter">
 
-        </select>
+                    <option value="all">
+                        All Classes
+                    </option>
 
-    </div>
+                    <option value="5">
+                        Class V
+                    </option>
 
-    <div id="videoContainer">
+                    <option value="6">
+                        Class VI
+                    </option>
 
+                    <option value="7">
+                        Class VII
+                    </option>
 
-    </div>
+                    <option value="8">
+                        Class VIII
+                    </option>
 
-</section>
+                    <option value="9">
+                        Class IX
+                    </option>
 
-<section id="studySection" style="display:none;">
+                    <option value="10">
+                        Class X
+                    </option>
 
-    <div class="section-header">
+                    <option value="11">
+                        Class XI
+                    </option>
 
-        <h2 class="section-title">
+                    <option value="12">
+                        Class XII
+                    </option>
 
-            Study Material
+                </select>
 
-        </h2>
-
-        <select id="studyClassFilter">
-
-            <option value="all">All Classes</option>
-
-            <option value="1">Class I</option>
-            <option value="2">Class II</option>
-            <option value="3">Class III</option>
-            <option value="4">Class IV</option>
-            <option value="5">Class V</option>
-            <option value="6">Class VI</option>
-            <option value="7">Class VII</option>
-            <option value="8">Class VIII</option>
-            <option value="9">Class IX</option>
-            <option value="10">Class X</option>
-            <option value="11">Class XI</option>
-            <option value="12">Class XII</option>
-
-        </select>
-
-    </div>
+            </div>
 
 
-    <div id="studyContainer">
+            <div id="studyContainer">
 
+            </div>
 
-    </div>
+        </section>
 
-</section>
+    </main>
 
 
     <footer class="footer">
@@ -224,13 +234,14 @@
 
             <div class="footer-heading">
 
-                <h2>Noor Education Society</h2>
+                <h2>
+                    Noor Education Society
+                </h2>
 
                 <p>
 
                     Empowering Minds,
                     <br>
-
                     Shaping Futures.
 
                 </p>
@@ -239,41 +250,62 @@
 
         </div>
 
+
         <div class="footer-section">
 
             <h3>
-
                 Quick Links
-
             </h3>
 
             <ul>
 
-                <li><a href="index.html">Home</a></li>
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
 
-                <li><a href="about.html">About School</a></li>
+                <li>
+                    <a href="about.html">
+                        About School
+                    </a>
+                </li>
 
-                <li><a href="gallery.html">Gallery</a></li>
+                <li>
+                    <a href="gallery.html">
+                        Gallery
+                    </a>
+                </li>
 
-                <li><a href="elearning.html">E-Learning</a></li>
+                <li>
+                    <a href="elearning.html">
+                        E-Learning
+                    </a>
+                </li>
 
-                <li><a href="notice.html">Notice Board</a></li>
+                <li>
+                    <a href="notice.html">
+                        Notice Board
+                    </a>
+                </li>
 
-                <li><a href="contact.html">Contact</a></li>
+                <li>
+                    <a href="contact.html">
+                        Contact
+                    </a>
+                </li>
 
             </ul>
 
         </div>
 
+
         <div class="footer-section">
 
             <h3>
-
                 Connect
-
             </h3>
-
-            <div class="social-links">
+ <div class="social-links">
 
                 <a href="#">
 
@@ -282,33 +314,24 @@
                     Facebook
 
                 </a>
+<a href="https://youtube.com/@nooreducationsociety-q9k" target="_blank">
+    <i class="fab fa-youtube"></i>
+    YouTube
+</a>
 
-                <a href="#">
-
-                    <i class="fab fa-youtube"></i>
-
-                    YouTube
-
-                </a>
-
-                <a href="#">
-
-                    <i class="fab fa-instagram"></i>
-
-                    Instagram
-
-                </a>
+<a href="https://www.instagram.com/noor_education.1982/" target="_blank">
+    <i class="fab fa-instagram"></i>
+    Instagram
+</a>
 
             </div>
-
         </div>
+
 
         <div class="footer-section">
 
             <h3>
-
                 Contact
-
             </h3>
 
             <p>
@@ -317,13 +340,10 @@
 
                 Behind Police Chowki,
                 <br>
-
                 Maindargi,
                 <br>
-
                 Tal. Akkalkot,
                 <br>
-
                 Dist. Solapur.
 
             </p>
@@ -354,6 +374,7 @@
 
         </div>
 
+
         <div class="footer-bottom">
 
             © 2026 Noor Education Society.
@@ -364,6 +385,7 @@
     </footer>
 
 </div>
+
 
 <script src="js/elearning.js"></script>
 
