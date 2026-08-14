@@ -1039,3 +1039,87 @@ body{
     }
 
 }
+.schedule-loading {
+    color: #ffffff;
+    text-align: center;
+    padding: 25px;
+    font-size: 14px;
+}
+
+
+.schedule-empty,
+.schedule-error {
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    padding: 30px 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, .15);
+
+}
+
+
+.schedule-empty i,
+.schedule-error i {
+
+    font-size: 38px;
+
+    margin-bottom: 15px;
+
+    color: #E53935;
+
+}
+
+
+.schedule-empty h3,
+.schedule-error h3 {
+
+    color: #102B72;
+
+    margin-bottom: 8px;
+
+    font-size: 17px;
+
+}
+
+
+.schedule-empty p,
+.schedule-error p {
+
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 22px;
+
+}
+
+
+.timetable-card {
+
+    width: 100%;
+
+}
+
+
+.card-buttons a {
+
+    min-width: 110px;
+
+}
+
+
+@media(max-width:390px) {
+
+    .timetable-card {
+
+        padding: 16px;
+
+    }
+
+}
