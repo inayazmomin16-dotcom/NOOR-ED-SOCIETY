@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api/gallery";
+const API = "https://noor-ed-society-backend.onrender.com/api/gallery";
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {

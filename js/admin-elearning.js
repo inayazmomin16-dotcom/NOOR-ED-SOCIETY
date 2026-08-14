@@ -1,5 +1,4 @@
-const API = "http://localhost:5000/api/elearning";
-
+const API = "https://noor-ed-society-backend.onrender.com/api/elearning";
 const materialForm = document.getElementById("materialForm");
 const materialId = document.getElementById("materialId");
 const title = document.getElementById("title");
@@ -16,7 +15,8 @@ const refreshBtn = document.getElementById("refreshBtn");
 const filterClass = document.getElementById("filterClass");
 const filterCategory = document.getElementById("filterCategory");
 
-const menuBtn = document.getElementById("menuBtn");
+const menuBtn = document.querySelector(".menu-btn");
+
 const mobileMenu = document.getElementById("mobileMenu");
 
 if (menuBtn && mobileMenu) {
@@ -29,19 +29,19 @@ if (menuBtn && mobileMenu) {
 
         if (mobileMenu.classList.contains("show")) {
 
-            menuIcon.classList.remove("fa-bars");
-            menuIcon.classList.add("fa-xmark");
+            menuIcon.classList.replace("fa-bars", "fa-xmark");
 
-        } else {
+        }
 
-            menuIcon.classList.remove("fa-xmark");
-            menuIcon.classList.add("fa-bars");
+        else {
+
+            menuIcon.classList.replace("fa-xmark", "fa-bars");
 
         }
 
     });
 
-    document.addEventListener("click", e => {
+    document.addEventListener("click", (e) => {
 
         if (
             !menuBtn.contains(e.target) &&
@@ -50,14 +50,21 @@ if (menuBtn && mobileMenu) {
 
             mobileMenu.classList.remove("show");
 
-            menuIcon.classList.remove("fa-xmark");
-            menuIcon.classList.add("fa-bars");
+            menuIcon.classList.replace("fa-xmark", "fa-bars");
 
         }
 
     });
 
 }
+
+window.addEventListener("load", () => {
+
+    document.body.style.opacity = "1";
+
+    loadGallery();
+
+});
 
 async function loadMaterials() {
     if (!materialsContainer) return;
