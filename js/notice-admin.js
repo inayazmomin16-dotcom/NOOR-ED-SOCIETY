@@ -1,18 +1,9 @@
 const API = "https://noor-ed-society-backend.onrender.com/api/notices";
-/* ===========================
-   ADMIN AUTHENTICATION
-=========================== */
-
 const token = localStorage.getItem("token");
 
 if (!token) {
     window.location.href = "admin-login.html";
 }
-
-
-/* ===========================
-   SCROLL ANIMATION
-=========================== */
 
 const observer = new IntersectionObserver((entries) => {
 
@@ -40,11 +31,6 @@ document.querySelectorAll(
     observer.observe(item);
 
 });
-
-
-/* ===========================
-   UPLOAD NOTICE
-=========================== */
 
 const form = document.getElementById("noticeForm");
 
@@ -139,12 +125,6 @@ if (form) {
     });
 
 }
-
-
-/* ===========================
-   LOAD NOTICES
-=========================== */
-
 async function loadNotices() {
 
     const noticeList =
@@ -272,9 +252,6 @@ async function loadNotices() {
 
         });
 
-
-        /* Apply animation to newly loaded cards */
-
         document
             .querySelectorAll(".notice-card")
             .forEach((card) => {
@@ -309,11 +286,6 @@ async function loadNotices() {
     }
 
 }
-
-
-/* ===========================
-   DELETE NOTICE
-=========================== */
 
 async function deleteNotice(id) {
 
@@ -404,11 +376,6 @@ async function deleteNotice(id) {
 
 }
 
-
-/* ===========================
-   SEARCH NOTICES
-=========================== */
-
 const searchInput =
     document.getElementById("searchNotice");
 
@@ -454,11 +421,6 @@ if (searchInput) {
     );
 
 }
-
-
-/* ===========================
-   MOBILE MENU
-=========================== */
 
 const menuBtn =
     document.querySelector(".menu-btn");
@@ -556,12 +518,6 @@ if (menuBtn && mobileMenu) {
 
 }
 
-
-/* ===========================
-   ESCAPE HTML
-   Prevents HTML injection
-=========================== */
-
 function escapeHTML(value) {
 
     const div =
@@ -573,12 +529,6 @@ function escapeHTML(value) {
     return div.innerHTML;
 
 }
-
-
-/* ===========================
-   PAGE LOAD
-=========================== */
-
 window.addEventListener(
     "load",
     () => {

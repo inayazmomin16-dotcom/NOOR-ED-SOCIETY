@@ -1,5 +1,8 @@
 const express = require("express");
 const dotenv = require("dotenv");
+
+dotenv.config();
+
 const cors = require("cors");
 const path = require("path");
 
@@ -12,21 +15,15 @@ const scheduleRoutes = require("./routes/scheduleRoutes");
 const dashboardRoutes = require("./routes/dashboardRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 
-dotenv.config();
+console.log("Cloudinary config:", {
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY ? "LOADED" : "MISSING",
+    api_secret: process.env.CLOUDINARY_API_SECRET ? "LOADED" : "MISSING"
+});
 
 const app = express();
 
-
-// =========================
-// DATABASE
-// =========================
-
 connectDB();
-
-
-// =========================
-// MIDDLEWARE
-// =========================
 
 app.use(cors());
 
@@ -37,11 +34,6 @@ app.use(
         extended: true
     })
 );
-
-
-// =========================
-// UPLOADS
-// =========================
 
 app.use(
     "/uploads",
@@ -54,11 +46,6 @@ console.log(
     "Uploads folder:",
     path.join(__dirname, "uploads")
 );
-
-
-// =========================
-// API ROUTES
-// =========================
 
 app.use(
     "/api/notices",
@@ -90,23 +77,11 @@ app.use(
     adminRoutes
 );
 
-
-// =========================
-// HOME
-// =========================
-
 app.get("/", (req, res) => {
-
     res.send(
         "Noor Education Society Backend Running 🚀"
     );
-
 });
-
-
-// =========================
-// SERVER
-// =========================
 
 const PORT =
     process.env.PORT || 5000;

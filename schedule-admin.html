@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Schedule Management | Noor Education Society</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@700&display=swap"
+          rel="stylesheet">
+
+          <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+          <link rel="stylesheet"
+          href="css/schedule-admin.css">
+
+</head>
+
+
+<body>
+
+
+<div class="admin-container">
+
+    <header class="header">
+
+
+        <div class="header-left">
+
+            <a href="dashboard.html"
+               class="back-btn">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+            </a>
+
+
+            <div class="header-title">
+
+                <h1>
+                    Schedule Management
+                </h1>
+
+                <p>
+                    Noor Education Society
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button class="menu-btn"
+                type="button"
+                aria-label="Open Menu">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+
+    </header>
+
+    <nav class="mobile-menu"
+         id="mobileMenu">
+
+
+        <a href="home.html">
+
+            <i class="fa-solid fa-house"></i>
+
+            Home
+
+        </a>
+
+
+        <a href="about.html">
+
+            <i class="fa-solid fa-school"></i>
+
+            About
+
+        </a>
+
+
+        <a href="notice.html">
+
+            <i class="fa-solid fa-bullhorn"></i>
+
+            Notice Board
+
+        </a>
+
+
+        <a href="gallery.html">
+
+            <i class="fa-solid fa-image"></i>
+
+            Gallery
+
+        </a>
+
+
+        <a href="elearning.html">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            E-Learning
+
+        </a>
+
+
+        <a href="schedule.html">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            Schedule
+
+        </a>
+
+
+        <a href="contact.html">
+
+            <i class="fa-solid fa-phone"></i>
+
+            Contact
+
+        </a>
+
+
+        <a href="admin-login.html"
+           class="admin-link">
+
+            <i class="fa-solid fa-user-shield"></i>
+
+            Admin Portal
+
+        </a>
+
+
+    </nav>
+
+    <section class="page-title">
+
+        <small>
+            ADMIN PANEL
+        </small>
+
+        <h2>
+            Schedule Management
+        </h2>
+
+        <p>
+
+            Upload and manage class and
+            teacher timetable PDF files.
+
+        </p>
+
+    </section>
+
+    <main class="admin-main">
+
+        <section class="upload-card">
+
+
+            <div class="card-heading">
+
+                <div class="heading-icon">
+
+                    <i class="fa-solid fa-calendar-days"></i>
+
+                </div>
+
+
+                <div>
+
+                    <h2 id="formTitle">
+                        Upload Timetable
+                    </h2>
+
+                    <p>
+                        Add or replace a timetable PDF.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <form id="scheduleForm">
+
+
+                <input
+                    type="hidden"
+                    id="scheduleId"
+                >
+
+                <div class="form-group">
+
+                    <label for="scheduleType">
+
+                        Timetable Type
+
+                    </label>
+
+
+                    <select
+                        id="scheduleType"
+                        required
+                    >
+
+                        <option value="">
+                            Select Timetable Type
+                        </option>
+
+                        <option value="class">
+                            Class Timetable
+                        </option>
+
+                        <option value="teacher">
+                            Teacher Timetable
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div
+                    class="form-group"
+                    id="classField"
+                    style="display:none;"
+                >
+
+                    <label for="classNumber">
+
+                        Select Class
+
+                    </label>
+
+
+                    <select id="classNumber">
+
+                        <option value="">
+                            Select Class
+                        </option>
+
+                        <option value="5">
+                            Class V
+                        </option>
+
+                        <option value="6">
+                            Class VI
+                        </option>
+
+                        <option value="7">
+                            Class VII
+                        </option>
+
+                        <option value="8">
+                            Class VIII
+                        </option>
+
+                        <option value="9">
+                            Class IX
+                        </option>
+
+                        <option value="10">
+                            Class X
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="pdf">
+
+                        Timetable PDF
+
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="pdf"
+                        accept="application/pdf,.pdf"
+                    >
+
+
+                    <small class="file-help">
+
+                        Only PDF files are allowed.
+
+                    </small>
+
+                </div>
+
+                <div
+                    id="existingFile"
+                    class="existing-file"
+                    style="display:none;"
+                >
+
+                </div>
+
+                <div class="form-buttons">
+
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                        id="saveScheduleBtn"
+                    >
+
+                        <i class="fa-solid fa-upload"></i>
+
+                        Upload Timetable
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        id="cancelScheduleBtn"
+                        style="display:none;"
+                    >
+
+                        Cancel
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </section>
+
+        <section class="schedule-card">
+
+
+            <div class="schedule-header">
+
+
+                <div>
+
+                    <h2>
+                        Uploaded Timetables
+                    </h2>
+
+                    <p id="scheduleCount">
+                        Loading...
+                    </p>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="refresh-btn"
+                    id="refreshScheduleBtn"
+                >
+
+                    <i class="fa-solid fa-rotate"></i>
+
+                    Refresh
+
+                </button>
+
+
+            </div>
+
+            <div class="search-box">
+
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+
+                <input
+                    type="text"
+                    id="searchSchedule"
+                    placeholder="Search timetable..."
+                >
+
+
+            </div>
+
+            <div class="filter-row">
+
+
+                <select id="filterType">
+
+                    <option value="all">
+                        All Timetables
+                    </option>
+
+                    <option value="class">
+                        Class Timetables
+                    </option>
+
+                    <option value="teacher">
+                        Teacher Timetable
+                    </option>
+
+                </select>
+
+
+                <select id="filterClass">
+
+                    <option value="all">
+                        All Classes
+                    </option>
+
+                    <option value="5">
+                        Class V
+                    </option>
+
+                    <option value="6">
+                        Class VI
+                    </option>
+
+                    <option value="7">
+                        Class VII
+                    </option>
+
+                    <option value="8">
+                        Class VIII
+                    </option>
+
+                    <option value="9">
+                        Class IX
+                    </option>
+
+                    <option value="10">
+                        Class X
+                    </option>
+
+                </select>
+
+
+            </div>
+
+            <div id="scheduleList">
+
+                <div class="loading">
+
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+
+                    Loading timetables...
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+    <footer class="footer">
+
+        <p>
+            Noor Education Society
+        </p>
+
+        <span>
+            Schedule Management System
+        </span>
+
+    </footer>
+
+
+</div>
+
+<script src="js/schedule-admin.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Notice Management | Noor Education Society</title>
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <link rel="stylesheet"
+          href="css/notice-admin.css">
+
+</head>
+
+
+<body>
+
+
+<div class="phone">
+
+    <header class="header">
+
+        <a href="dashboard.html"
+           class="back-btn">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </a>
+
+
+        <div class="header-title">
+
+            <h2>
+                Notice Management
+            </h2>
+
+            <p>
+                Noor Education Society
+            </p>
+
+        </div>
+
+
+        <button class="menu-btn">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+    </header>
+
+    <nav class="mobile-menu"
+         id="mobileMenu">
+
+
+        <a href="home.html">
+
+            <i class="fa-solid fa-house"></i>
+
+            Home
+
+        </a>
+
+
+        <a href="about.html">
+
+            <i class="fa-solid fa-school"></i>
+
+            About
+
+        </a>
+
+
+        <a href="notice.html">
+
+            <i class="fa-solid fa-bullhorn"></i>
+
+            Notice Board
+
+        </a>
+
+
+        <a href="gallery.html">
+
+            <i class="fa-solid fa-image"></i>
+
+            Gallery
+
+        </a>
+
+
+        <a href="elearning.html">
+
+            <i class="fa-solid fa-book-open"></i>
+
+            E-Learning
+
+        </a>
+
+
+        <a href="schedule.html">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            Schedule
+
+        </a>
+
+
+        <a href="contact.html">
+
+            <i class="fa-solid fa-phone"></i>
+
+            Contact
+
+        </a>
+
+
+        <a href="admin-login.html"
+           class="admin-link">
+
+            <i class="fa-solid fa-user-shield"></i>
+
+            Admin Portal
+
+        </a>
+
+    </nav>
+
+    <section class="page-title">
+
+        <h1>
+            Notice Management
+        </h1>
+
+        <p>
+            Create, manage and delete school notices.
+        </p>
+
+    </section>
+
+    <section class="upload-section">
+
+        <div class="upload-card">
+
+            <h3>
+                Upload New Notice
+            </h3>
+
+
+            <form id="noticeForm"
+                  class="upload-form">
+
+
+                <div class="input-box">
+
+                    <label>
+                        Notice Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="Enter Notice Title"
+                        required>
+
+                </div>
+
+
+                <div class="input-box">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        rows="6"
+                        placeholder="Write Notice Description..."
+                        required></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="upload-btn">
+
+                    <i class="fa-solid fa-paper-plane"></i>
+
+                    Upload Notice
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <section class="notice-list">
+
+        <h2>
+            Uploaded Notices
+        </h2>
+
+
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchNotice"
+                placeholder="Search Notices...">
+
+        </div>
+
+
+        <div id="noticeList"></div>
+
+    </section>
+
+    <footer class="footer">
+
+        <p>
+            Noor Education Society
+        </p>
+
+        <span>
+            Notice Management System
+        </span>
+
+    </footer>
+
+
+</div>
+
+
+<script src="js/notice-admin.js"></script>
+
+</body>
+
+</html>

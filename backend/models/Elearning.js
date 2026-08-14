@@ -30,6 +30,16 @@ const eLearningSchema = new mongoose.Schema({
         required: true
     },
 
+    publicId: {
+        type: String,
+        default: null
+    },
+
+    resourceType: {
+        type: String,
+        default: "raw"
+    },
+
     description: {
         type: String,
         default: ""

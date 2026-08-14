@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
-const gallerySchema = new mongoose.Schema(
-{
+const gallerySchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -10,6 +9,11 @@ const gallerySchema = new mongoose.Schema(
     image: {
         type: String,
         required: true
+    },
+
+    publicId: {
+        type: String,
+        default: null
     },
 
     category: {

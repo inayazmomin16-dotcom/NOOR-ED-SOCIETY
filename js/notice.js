@@ -11,11 +11,6 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
     let currentCategory = "All";
     let currentSearch = "";
 
-
-    /* ================================
-       MOBILE MENU
-    ================================= */
-
     if (menuButton && mobileMenu) {
 
         menuButton.addEventListener("click", () => {
@@ -50,12 +45,6 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
         });
 
     }
-
-
-    /* ================================
-       LOAD NOTICES
-    ================================= */
-
     async function loadNotices() {
 
         try {
@@ -69,11 +58,6 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
             }
 
             const data = await response.json();
-
-
-            /*
-             * Support different API response formats
-             */
 
             if (Array.isArray(data)) {
 
@@ -92,11 +76,6 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
                 allNotices = [];
 
             }
-
-
-            /*
-             * Sort notices by newest date first
-             */
 
             allNotices.sort((a, b) => {
 
@@ -132,11 +111,6 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
 
     }
 
-
-    /* ================================
-       RENDER NOTICES
-    ================================= */
-
     function renderNotices() {
 
         if (!noticeList) return;
@@ -146,20 +120,10 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
 
             const category = getCategory(notice);
 
-
-            /*
-             * Category filter
-             */
-
             const categoryMatch =
                 currentCategory === "All" ||
                 category.toLowerCase() ===
                 currentCategory.toLowerCase();
-
-
-            /*
-             * Notice title
-             */
 
             const title = String(
                 notice.title ||
@@ -167,22 +131,12 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
                 ""
             ).toLowerCase();
 
-
-            /*
-             * Notice description
-             */
-
             const description = String(
                 notice.description ||
                 notice.content ||
                 notice.message ||
                 ""
             ).toLowerCase();
-
-
-            /*
-             * Search text
-             */
 
             const search =
                 currentSearch.toLowerCase();
@@ -196,11 +150,6 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
             return categoryMatch && searchMatch;
 
         });
-
-
-        /*
-         * No notices found
-         */
 
         if (filteredNotices.length === 0) {
 
@@ -224,19 +173,9 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
 
         }
 
-
-        /*
-         * Create notice cards
-         */
-
         noticeList.innerHTML = filteredNotices
             .map(notice => createNoticeCard(notice))
             .join("");
-
-
-        /*
-         * Card animation delay
-         */
 
         noticeList
             .querySelectorAll(".notice-card")
@@ -249,11 +188,6 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
 
     }
 
-
-    /* ================================
-       CREATE NOTICE CARD
-    ================================= */
-
     function createNoticeCard(notice) {
 
         const category = getCategory(notice);
@@ -261,21 +195,11 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
         const categoryClass =
             getCategoryClass(category);
 
-
-        /*
-         * Notice title
-         */
-
         const title = escapeHTML(
             notice.title ||
             notice.name ||
             "Untitled Notice"
         );
-
-
-        /*
-         * Notice description
-         */
 
         const description = escapeHTML(
             notice.description ||
@@ -284,32 +208,15 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
             "No description available."
         );
 
-
-        /*
-         * Notice date
-         */
-
         const formattedDate = formatDate(
             notice.date ||
             notice.createdAt
         );
 
-
-        /*
-         * New notice badge
-         */
-
         const isNew =
             notice.isNew === true ||
             notice.new === true ||
             notice.status === "new";
-
-
-        /*
-         * Notice card
-         *
-         * PDF option has been completely removed.
-         */
 
         return `
             <div
@@ -361,11 +268,6 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
         `;
 
     }
-
-
-    /* ================================
-       GET CATEGORY
-    ================================= */
 
     function getCategory(notice) {
 
@@ -426,11 +328,6 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
 
     }
 
-
-    /* ================================
-       CATEGORY CSS CLASS
-    ================================= */
-
     function getCategoryClass(category) {
 
         const lower =
@@ -481,11 +378,6 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
 
     }
 
-
-    /* ================================
-       FORMAT DATE
-    ================================= */
-
     function formatDate(dateValue) {
 
         if (!dateValue) {
@@ -517,11 +409,6 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
 
     }
 
-
-    /* ================================
-       SEARCH
-    ================================= */
-
     if (searchInput) {
 
         searchInput.addEventListener(
@@ -538,21 +425,11 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
 
     }
 
-
-    /* ================================
-       CATEGORY FILTER
-    ================================= */
-
     filterButtons.forEach(button => {
 
         button.addEventListener(
             "click",
             () => {
-
-
-                /*
-                 * Remove active class
-                 */
 
                 filterButtons.forEach(btn => {
 
@@ -562,19 +439,9 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
 
                 });
 
-
-                /*
-                 * Add active class
-                 */
-
                 button.classList.add(
                     "active"
                 );
-
-
-                /*
-                 * Get selected category
-                 */
 
                 currentCategory =
                     button.textContent.trim();
@@ -586,11 +453,6 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
         );
 
     });
-
-
-    /* ================================
-       LOADING
-    ================================= */
 
     function showLoading() {
 
@@ -616,11 +478,6 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
         `;
 
     }
-
-
-    /* ================================
-       ERROR
-    ================================= */
 
     function showError() {
 
@@ -675,11 +532,6 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
 
     }
 
-
-    /* ================================
-       SECURITY - ESCAPE HTML
-    ================================= */
-
     function escapeHTML(value) {
 
         return String(value)
@@ -710,11 +562,6 @@ const API_URL = "https://noor-ed-society-backend.onrender.com/api/notices";
             );
 
     }
-
-
-    /* ================================
-       LOAD DATA
-    ================================= */
 
     loadNotices();
 

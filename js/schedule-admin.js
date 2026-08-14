@@ -1,5 +1,4 @@
-const API = "https://noor-ed-society-backend.onrender.com/api/schedule";
-
+const API = "http://localhost:5000/api/schedule";
 const menuBtn = document.querySelector(".menu-btn");
 const mobileMenu = document.getElementById("mobileMenu");
 
@@ -456,14 +455,12 @@ function getFileUrl(filePath) {
     ) {
         return filePath;
     }
-
-    if (filePath.startsWith("/")) {
-    return `https://noor-ed-society-backend.onrender.com${filePath}`;
+if (filePath.startsWith("/")) {
+    return `http://localhost:5000${filePath}`;
 }
 
-return `https://noor-ed-society-backend.onrender.com/${filePath}`;
+return `http://localhost:5000/${filePath}`;
 }
-
 function editSchedule(schedule) {
     scheduleId.value =
         schedule._id || "";

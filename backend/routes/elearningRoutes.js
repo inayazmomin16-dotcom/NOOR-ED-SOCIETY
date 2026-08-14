@@ -12,25 +12,21 @@ const {
 const upload = require("../middleware/elearningUpload");
 const protect = require("../middleware/authMiddleware");
 
-
-// =========================
-// PUBLIC
-// =========================
-
-router.get("/", getMaterials);
-
-router.get("/:id", getMaterialById);
-
-
-// =========================
-// ADMIN
-// =========================
-
 router.post(
     "/",
     protect,
     upload.single("file"),
     createMaterial
+);
+
+router.get(
+    "/",
+    getMaterials
+);
+
+router.get(
+    "/:id",
+    getMaterialById
 );
 
 router.put(
@@ -45,6 +41,5 @@ router.delete(
     protect,
     deleteMaterial
 );
-
 
 module.exports = router;

@@ -1,62 +1,125 @@
 const Schedule = require("../models/Schedule");
-const fs = require("fs");
+const cloudinary = require("../config/cloudinary");
+const streamifier = require("streamifier");
 const path = require("path");
 
-const uploadDir = path.join(
-    __dirname,
-    "../uploads/schedule"
-);
+const uploadToCloudinary = (
+    fileBuffer,
+    originalName
+) => {
 
-const uploadSchedule = async (req, res) => {
+    return new Promise((resolve, reject) => {
+
+        const ext =
+            path
+                .extname(originalName)
+                .toLowerCase();
+
+        const name =
+            path
+                .basename(originalName, ext)
+                .replace(
+                    /[^a-zA-Z0-9-_]/g,
+                    "_"
+                );
+
+        const publicId =
+            `${name}-${Date.now()}${ext}`;
+
+        const stream =
+            cloudinary.uploader.upload_stream(
+                {
+                    folder:
+                        "noor-education-society/schedule",
+
+                    public_id:
+                        publicId,
+
+                    resource_type:
+                        "raw"
+                },
+
+                (error, result) => {
+
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve(result);
+                    }
+
+                }
+            );
+
+        streamifier
+            .createReadStream(fileBuffer)
+            .pipe(stream);
+
+    });
+
+};
+
+
+const uploadSchedule = async (
+    req,
+    res
+) => {
+
     try {
+
         if (!req.file) {
+
             return res.status(400).json({
                 success: false,
-                message: "Please upload a PDF file"
+                message:
+                    "Please upload a PDF file"
             });
+
         }
 
-        const type = req.body.type;
+
+        const type =
+            req.body.type;
+
 
         const classNumber =
             type === "class"
                 ? Number(req.body.classNumber)
                 : null;
 
-        if (!["class", "teacher"].includes(type)) {
-            fs.unlinkSync(
-                path.join(
-                    uploadDir,
-                    req.file.filename
-                )
-            );
+
+        if (
+            !["class", "teacher"]
+                .includes(type)
+        ) {
 
             return res.status(400).json({
                 success: false,
-                message: "Invalid timetable type"
+                message:
+                    "Invalid timetable type"
             });
+
         }
+
 
         if (
             type === "class" &&
             (
-                !classNumber ||
+                !Number.isInteger(
+                    classNumber
+                ) ||
                 classNumber < 5 ||
                 classNumber > 10
             )
         ) {
-            fs.unlinkSync(
-                path.join(
-                    uploadDir,
-                    req.file.filename
-                )
-            );
 
             return res.status(400).json({
                 success: false,
-                message: "Please select a valid class"
+                message:
+                    "Please select a valid class"
             });
+
         }
+
 
         const filter =
             type === "class"
@@ -68,29 +131,57 @@ const uploadSchedule = async (req, res) => {
                     type: "teacher"
                 };
 
+
         const existing =
             await Schedule.findOne(filter);
 
-        if (existing && existing.pdf) {
-            const oldPath =
-                path.join(
-                    __dirname,
-                    "..",
-                    existing.pdf
-                );
 
-            if (fs.existsSync(oldPath)) {
-                fs.unlinkSync(oldPath);
-            }
-        }
+        const result =
+            await uploadToCloudinary(
+                req.file.buffer,
+                req.file.originalname
+            );
 
-        const pdfPath =
-            `/uploads/schedule/${req.file.filename}`;
 
         if (existing) {
-            existing.pdf = pdfPath;
+
+            if (
+                existing.pdf &&
+                existing.pdf.includes(
+                    "res.cloudinary.com"
+                )
+            ) {
+
+                try {
+
+                    await cloudinary.uploader.destroy(
+                        existing.publicId,
+                        {
+                            resource_type:
+                                "raw"
+                        }
+                    );
+
+                } catch (error) {
+
+                    console.error(
+                        "Old Cloudinary file deletion error:",
+                        error
+                    );
+
+                }
+
+            }
+
+
+            existing.pdf =
+                result.secure_url;
+
+            existing.publicId =
+                result.public_id;
 
             await existing.save();
+
 
             return res.status(200).json({
                 success: true,
@@ -98,14 +189,25 @@ const uploadSchedule = async (req, res) => {
                     "Timetable replaced successfully",
                 data: existing
             });
+
         }
+
 
         const schedule =
             await Schedule.create({
+
                 type,
+
                 classNumber,
-                pdf: pdfPath
+
+                pdf:
+                    result.secure_url,
+
+                publicId:
+                    result.public_id
+
             });
+
 
         return res.status(201).json({
             success: true,
@@ -114,33 +216,31 @@ const uploadSchedule = async (req, res) => {
             data: schedule
         });
 
+
     } catch (error) {
-
-        if (req.file) {
-            const filePath =
-                path.join(
-                    uploadDir,
-                    req.file.filename
-                );
-
-            if (fs.existsSync(filePath)) {
-                fs.unlinkSync(filePath);
-            }
-        }
 
         console.error(
             "Schedule upload error:",
             error
         );
 
+
         return res.status(500).json({
             success: false,
-            message: error.message
+            message:
+                error.message
         });
+
     }
+
 };
 
-const getSchedules = async (req, res) => {
+
+const getSchedules = async (
+    req,
+    res
+) => {
+
     try {
 
         const schedules =
@@ -151,22 +251,34 @@ const getSchedules = async (req, res) => {
                     classNumber: 1
                 });
 
+
         return res.status(200).json({
             success: true,
-            count: schedules.length,
-            data: schedules
+            count:
+                schedules.length,
+            data:
+                schedules
         });
+
 
     } catch (error) {
 
         return res.status(500).json({
             success: false,
-            message: error.message
+            message:
+                error.message
         });
+
     }
+
 };
 
-const getScheduleById = async (req, res) => {
+
+const getScheduleById = async (
+    req,
+    res
+) => {
+
     try {
 
         const schedule =
@@ -174,55 +286,92 @@ const getScheduleById = async (req, res) => {
                 req.params.id
             );
 
+
         if (!schedule) {
+
             return res.status(404).json({
                 success: false,
-                message: "Timetable not found"
+                message:
+                    "Timetable not found"
             });
+
         }
+
 
         return res.status(200).json({
             success: true,
-            data: schedule
+            data:
+                schedule
         });
+
 
     } catch (error) {
 
         return res.status(500).json({
             success: false,
-            message: error.message
+            message:
+                error.message
         });
+
     }
+
 };
 
-const deleteSchedule = async (req, res) => {
+
+const deleteSchedule = async (
+    req,
+    res
+) => {
+
     try {
 
         const schedule =
-            await Schedule.findByIdAndDelete(
+            await Schedule.findById(
                 req.params.id
             );
 
+
         if (!schedule) {
+
             return res.status(404).json({
                 success: false,
-                message: "Timetable not found"
+                message:
+                    "Timetable not found"
             });
+
         }
 
-        if (schedule.pdf) {
 
-            const filePath =
-                path.join(
-                    __dirname,
-                    "..",
-                    schedule.pdf
+        if (
+            schedule.publicId
+        ) {
+
+            try {
+
+                await cloudinary.uploader.destroy(
+                    schedule.publicId,
+                    {
+                        resource_type:
+                            "raw"
+                    }
                 );
 
-            if (fs.existsSync(filePath)) {
-                fs.unlinkSync(filePath);
+            } catch (error) {
+
+                console.error(
+                    "Cloudinary delete error:",
+                    error
+                );
+
             }
+
         }
+
+
+        await Schedule.findByIdAndDelete(
+            req.params.id
+        );
+
 
         return res.status(200).json({
             success: true,
@@ -230,14 +379,25 @@ const deleteSchedule = async (req, res) => {
                 "Timetable deleted successfully"
         });
 
+
     } catch (error) {
+
+        console.error(
+            "Delete schedule error:",
+            error
+        );
+
 
         return res.status(500).json({
             success: false,
-            message: error.message
+            message:
+                error.message
         });
+
     }
+
 };
+
 
 module.exports = {
     uploadSchedule,

@@ -4,7 +4,10 @@ const scheduleSchema = new mongoose.Schema(
     {
         type: {
             type: String,
-            enum: ["class", "teacher"],
+            enum: [
+                "class",
+                "teacher"
+            ],
             required: true
         },
 
@@ -22,6 +25,11 @@ const scheduleSchema = new mongoose.Schema(
             required: true
         },
 
+        publicId: {
+            type: String,
+            default: null
+        },
+
         createdAt: {
             type: Date,
             default: Date.now
@@ -32,4 +40,8 @@ const scheduleSchema = new mongoose.Schema(
     }
 );
 
-module.exports = mongoose.model("Schedule", scheduleSchema);
+module.exports =
+    mongoose.model(
+        "Schedule",
+        scheduleSchema
+    );

@@ -1,9 +1,4 @@
-const API = "https://noor-ed-society-backend.onrender.com/api/gallery";
-
-/* ===========================
-   Scroll Animation
-=========================== */
-
+const API = "http://localhost:5000/api/gallery";
 const observer = new IntersectionObserver((entries) => {
 
     entries.forEach(entry => {
@@ -28,11 +23,6 @@ document.querySelectorAll("section,.footer").forEach(item=>{
 
 });
 
-
-/* ===========================
-   Load Gallery
-=========================== */
-
 async function loadGallery(){
 
     try{
@@ -53,8 +43,7 @@ async function loadGallery(){
                  data-category="${item.category.toLowerCase()}">
 
                 <img
-                   src="https://noor-ed-society-backend.onrender.com${item.image}"
-                    alt="${item.title}">
+src="${item.image}"                    alt="${item.title}">
 
                 <div class="gallery-info">
 
@@ -82,11 +71,6 @@ async function loadGallery(){
 
 }
 
-
-/* ===========================
-   Search
-=========================== */
-
 const searchInput = document.querySelector(".search-box input");
 
 if(searchInput){
@@ -109,11 +93,6 @@ if(searchInput){
     });
 
 }
-
-
-/* ===========================
-   Filter Buttons
-=========================== */
 
 document.querySelectorAll(".filter").forEach(btn=>{
 
@@ -153,11 +132,6 @@ document.querySelectorAll(".filter").forEach(btn=>{
 
 });
 
-
-/* ===========================
-   Lightbox
-=========================== */
-
 function enableLightbox(){
 
     document.querySelectorAll(".gallery-card").forEach(card=>{
@@ -196,11 +170,6 @@ function enableLightbox(){
 
 }
 
-
-/* ===========================
-   Ripple Effect
-=========================== */
-
 document.querySelectorAll(".filter").forEach(btn=>{
 
     btn.addEventListener("click",function(e){
@@ -226,11 +195,6 @@ document.querySelectorAll(".filter").forEach(btn=>{
     });
 
 });
-
-
-/* ===========================
-   Mobile Menu
-=========================== */
 
 const menuBtn=document.querySelector(".menu-btn");
 
@@ -275,11 +239,6 @@ document.addEventListener("click",(e)=>{
     }
 
 });
-
-
-/* ===========================
-   Initial Load
-=========================== */
 
 window.addEventListener("load",()=>{
 

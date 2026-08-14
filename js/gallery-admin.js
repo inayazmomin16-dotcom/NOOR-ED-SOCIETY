@@ -1,9 +1,4 @@
-const API = "https://noor-ed-society-backend.onrender.com/api/gallery";
-
-/* ===========================
-   Scroll Animation
-=========================== */
-
+const API = "http://localhost:5000/api/gallery";
 const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -19,10 +14,6 @@ document.querySelectorAll(".page-title, .upload-card, .gallery-list")
     item.classList.add("hidden");
     observer.observe(item);
 });
-
-/* ===========================
-   Image Preview
-=========================== */
 
 const fileInput = document.getElementById("image");
 
@@ -64,10 +55,6 @@ if (fileInput) {
     });
 
 }
-
-/* ===========================
-   Upload Gallery
-=========================== */
 
 const form = document.getElementById("galleryForm");
 
@@ -132,10 +119,6 @@ if (form) {
 
 }
 
-/* ===========================
-   Load Gallery
-=========================== */
-
 async function loadGallery() {
 
     try {
@@ -169,8 +152,8 @@ async function loadGallery() {
             <div class="image-card">
 
                 <img
-                   src="https://noor-ed-society-backend.onrender.com${item.image}"
-                    alt="${item.title}">
+                src="${item.image}"
+                alt="${item.title}">
 
                 <div class="image-details">
 
@@ -209,10 +192,6 @@ async function loadGallery() {
     }
 
 }
-
-/* ===========================
-   Delete Gallery
-=========================== */
 
 async function deleteGallery(id) {
 
@@ -256,10 +235,6 @@ async function deleteGallery(id) {
 
 }
 
-/* ===========================
-   Search
-=========================== */
-
 const search = document.querySelector(".search-box input");
 
 if (search) {
@@ -287,10 +262,6 @@ if (search) {
     });
 
 }
-
-/* ===========================
-   Mobile Menu
-=========================== */
 
 const menuBtn = document.querySelector(".menu-btn");
 
@@ -334,10 +305,6 @@ if (menuBtn && mobileMenu) {
     });
 
 }
-
-/* ===========================
-   Page Load
-=========================== */
 
 window.addEventListener("load", () => {
 

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>E-Learning Admin | Noor Education Society</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="css/admin-elearning.css">
+</head>
+
+<body>
+
+<div class="admin-container">
+
+<header class="header">
+
+    <a href="dashboard.html" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i>
+    </a>
+
+    <div class="header-title">
+
+        <h2>E-LEARNING MANAGEMENT</h2>
+
+        <p>Noor Education Society</p>
+
+    </div>
+
+    <button class="menu-btn" id="menuBtn">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <nav class="mobile-menu" id="mobileMenu">
+
+        <a href="dashboard.html">
+            <i class="fa-solid fa-house"></i>
+            Dashboard
+        </a>
+
+        <a href="admin-notice.html">
+            <i class="fa-solid fa-bullhorn"></i>
+            Notice Management
+        </a>
+
+        <a href="admin-elearning.html">
+            <i class="fa-solid fa-book-open"></i>
+            E-Learning Management
+        </a>
+
+        <a href="schedule-admin.html">
+            <i class="fa-solid fa-calendar-days"></i>
+            Schedule Management
+        </a>
+
+        <a href="admin.html" class="admin-link">
+            <i class="fa-solid fa-user-shield"></i>
+            Admin Panel
+        </a>
+
+    </nav>
+
+</header>
+
+
+    <main class="admin-main">
+
+        <section class="form-card">
+
+            <div class="card-heading">
+
+                <div class="heading-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+
+                <div>
+                    <h2 id="formTitle">Add E-Learning Material</h2>
+                    <p>Add notes, assignments, question papers or syllabus.</p>
+                </div>
+
+            </div>
+
+
+            <form id="materialForm">
+
+                <input type="hidden" id="materialId">
+
+
+                <div class="form-group">
+
+                    <label for="title">
+                        Material Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        placeholder="Enter material title"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="classNumber">
+                            Class
+                        </label>
+
+                        <select id="classNumber" required>
+
+                            <option value="">
+                                Select Class
+                            </option>
+
+                            <option value="5">Class V</option>
+                            <option value="6">Class VI</option>
+                            <option value="7">Class VII</option>
+                            <option value="8">Class VIII</option>
+                            <option value="9">Class IX</option>
+                            <option value="10">Class X</option>
+                            <option value="11">Class XI</option>
+                            <option value="12">Class XII</option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="category">
+                            Category
+                        </label>
+
+                        <select id="category" required>
+
+                            <option value="">
+                                Select Category
+                            </option>
+
+                            <option value="Notes">
+                                Notes
+                            </option>
+
+                            <option value="Assignment">
+                                Assignment
+                            </option>
+
+                            <option value="Question Paper">
+                                Question Paper
+                            </option>
+
+                            <option value="Syllabus">
+                                Syllabus
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+    <label for="file">
+        Upload File
+    </label>
+
+    <input
+        type="file"
+        id="file"
+        accept=".pdf,.mp4,.webm,.ppt,.pptx,.doc,.docx"
+    >
+
+    <div
+        id="existingFile"
+        style="display:none;"
+    ></div>
+
+</div>
+
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        rows="4"
+                        placeholder="Enter material description"
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-buttons">
+
+                    <button
+                        type="submit"
+                        class="save-btn"
+                        id="saveBtn"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add Material
+                    </button>
+
+                    <button
+                        type="button"
+                        class="cancel-btn"
+                        id="cancelBtn"
+                        style="display:none"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+        <section class="materials-card">
+
+            <div class="materials-header">
+
+                <div>
+
+                    <h2>E-Learning Materials</h2>
+
+                    <p id="materialCount">
+                        Loading materials...
+                    </p>
+
+                </div>
+
+                <button
+                    class="refresh-btn"
+                    id="refreshBtn"
+                >
+                    <i class="fa-solid fa-rotate"></i>
+                    Refresh
+                </button>
+
+            </div>
+
+
+            <div class="filter-row">
+
+                <select id="filterClass">
+
+                    <option value="all">
+                        All Classes
+                    </option>
+
+                    <option value="5">Class V</option>
+                    <option value="6">Class VI</option>
+                    <option value="7">Class VII</option>
+                    <option value="8">Class VIII</option>
+                    <option value="9">Class IX</option>
+                    <option value="10">Class X</option>
+                    <option value="11">Class XI</option>
+                    <option value="12">Class XII</option>
+
+                </select>
+
+
+                <select id="filterCategory">
+
+                    <option value="all">
+                        All Categories
+                    </option>
+
+                    <option value="Notes">
+                        Notes
+                    </option>
+
+                    <option value="Assignment">
+                        Assignment
+                    </option>
+
+                    <option value="Question Paper">
+                        Question Paper
+                    </option>
+
+                    <option value="Syllabus">
+                        Syllabus
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div id="materialsContainer">
+
+                <div class="loading">
+                    Loading materials...
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <foote class="footer">
+
+        <p>
+            Noor Education Society
+        </p>
+
+        <span>
+            Notice Management System
+        </span>
+
+</footer>
+
+</div>
+
+<script src="js/admin-elearning.js"></script>
+
+</body>
+</html>

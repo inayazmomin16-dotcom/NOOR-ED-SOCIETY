@@ -1,5 +1,4 @@
 const express = require("express");
-const router = express.Router();
 
 const {
     uploadSchedule,
@@ -11,22 +10,27 @@ const {
 const upload = require("../middleware/scheduleUpload");
 const protect = require("../middleware/authMiddleware");
 
-
-// =========================
-// PUBLIC
-// =========================
-
-router.get("/", getSchedules);
-
-router.get("/:id", getScheduleById);
-
-
-// =========================
-// ADMIN
-// =========================
+const router = express.Router();
 
 router.post(
     "/",
+    protect,
+    upload.single("pdf"),
+    uploadSchedule
+);
+
+router.get(
+    "/",
+    getSchedules
+);
+
+router.get(
+    "/:id",
+    getScheduleById
+);
+
+router.put(
+    "/:id",
     protect,
     upload.single("pdf"),
     uploadSchedule
@@ -37,6 +41,5 @@ router.delete(
     protect,
     deleteSchedule
 );
-
 
 module.exports = router;

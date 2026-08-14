@@ -5,26 +5,30 @@ if (togglePassword && password) {
 
     togglePassword.addEventListener("click", () => {
 
-    if(password.type === "password"){
+        if (password.type === "password") {
 
-        password.type = "text";
+            password.type = "text";
 
-        togglePassword.classList.remove("fa-eye");
+            togglePassword.classList.remove("fa-eye");
+            togglePassword.classList.add("fa-eye-slash");
 
-        togglePassword.classList.add("fa-eye-slash");
+        } else {
 
-    }else{
+            password.type = "password";
 
-        password.type = "password";
+            togglePassword.classList.remove("fa-eye-slash");
+            togglePassword.classList.add("fa-eye");
 
-        togglePassword.classList.remove("fa-eye-slash");
+        }
 
-        togglePassword.classList.add("fa-eye");
+    });
 
-    }
-
-});
 }
+
+
+// ===========================
+// LOGIN
+// ===========================
 
 const loginForm = document.querySelector(".login-form");
 const loginBtn = document.querySelector(".login-btn");
@@ -33,74 +37,94 @@ if (loginForm && loginBtn) {
 
     loginForm.addEventListener("submit", async (e) => {
 
-    e.preventDefault();
+        e.preventDefault();
 
-    loginBtn.innerHTML = "Logging In...";
-    loginBtn.disabled = true;
+        loginBtn.innerHTML = "Logging In...";
+        loginBtn.disabled = true;
 
-    const usernameInput = loginForm.querySelector("#username");
-const passwordInput = loginForm.querySelector("#password");
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
 
-if (!usernameInput || !passwordInput) {
-    console.error("Username or password input not found.");
-    alert("Login form error. Please refresh the page.");
-    loginBtn.innerHTML = "LOGIN";
-    loginBtn.disabled = false;
-    return;
-}
+        if (!usernameInput || !passwordInput) {
 
-const username = usernameInput.value.trim();
-const password = passwordInput.value;
+            console.error("Username input:", usernameInput);
+            console.error("Password input:", passwordInput);
 
-    try {
+            alert("Username or password input not found.");
 
-        const res = await fetch("https://noor-ed-society-backend.onrender.com/api/admin/login", {
+            loginBtn.innerHTML = "LOGIN";
+            loginBtn.disabled = false;
 
-            method: "POST",
+            return;
+        }
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+        const username = usernameInput.value.trim();
+        const passwordValue = passwordInput.value;
 
-            body: JSON.stringify({
-                username,
-                password
-            })
+        try {
 
-        });
+            const res = await fetch(
+                "https://noor-ed-society-backend.onrender.com/api/admin/login",
+                {
+                    method: "POST",
 
-        const data = await res.json();
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
 
-        if (data.success) {
+                    body: JSON.stringify({
+                        username,
+                        password: passwordValue
+                    })
+                }
+            );
 
-            localStorage.setItem("token", data.token);
-            localStorage.setItem("username", data.username);
+            const data = await res.json();
 
-            window.location.href = "dashboard.html";
+            console.log("Login response:", data);
 
-        } else {
+            if (data.success) {
 
-            alert(data.message);
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("username", data.username);
+
+                window.location.href = "dashboard.html";
+
+            } else {
+
+                alert(data.message || "Invalid username or password.");
+
+                loginBtn.innerHTML = "LOGIN";
+                loginBtn.disabled = false;
+
+            }
+
+        } catch (err) {
+
+            console.error("Login error:", err);
+
+            alert("Unable to connect to server.");
 
             loginBtn.innerHTML = "LOGIN";
             loginBtn.disabled = false;
 
         }
 
-    } catch (err) {
+    });
 
-        alert("Server Error");
+}
 
-        loginBtn.innerHTML = "LOGIN";
-        loginBtn.disabled = false;
 
-    }
+// ===========================
+// ENTER KEY
+// ===========================
 
-});
+document.addEventListener("keydown", (e) => {
 
-document.addEventListener("keydown",(e)=>{
-
-    if(e.key==="Enter"){
+    if (
+        e.key === "Enter" &&
+        loginForm
+    ) {
 
         loginForm.requestSubmit();
 
@@ -108,30 +132,52 @@ document.addEventListener("keydown",(e)=>{
 
 });
 
-const inputs=document.querySelectorAll(".input-field input");
 
-inputs.forEach(input=>{
+// ===========================
+// INPUT FOCUS EFFECT
+// ===========================
 
-    input.addEventListener("focus",()=>{
+const inputs = document.querySelectorAll(".input-field input");
 
-        input.parentElement.style.boxShadow="0 0 0 3px rgba(248,169,31,.35)";
+inputs.forEach(input => {
+
+    input.addEventListener("focus", () => {
+
+        input.parentElement.style.boxShadow =
+            "0 0 0 3px rgba(248,169,31,.35)";
 
     });
 
-    input.addEventListener("blur",()=>{
+    input.addEventListener("blur", () => {
 
-        input.parentElement.style.boxShadow="none";
+        input.parentElement.style.boxShadow = "none";
 
     });
 
 });
 
-window.addEventListener("load",()=>{
 
-    document.querySelector(".login-card").style.opacity="1";
+// ===========================
+// LOGIN CARD
+// ===========================
+
+window.addEventListener("load", () => {
+
+    const loginCard = document.querySelector(".login-card");
+
+    if (loginCard) {
+
+        loginCard.style.opacity = "1";
+
+    }
 
 });
-}
+
+
+// ===========================
+// MOBILE MENU
+// ===========================
+
 const menuBtn = document.querySelector(".menu-btn");
 const mobileMenu = document.getElementById("mobileMenu");
 

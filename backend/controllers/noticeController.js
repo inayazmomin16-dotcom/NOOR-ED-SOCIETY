@@ -1,6 +1,4 @@
 const Notice = require("../models/Notice");
-
-// Create Notice
 const createNotice = async (req, res) => {
     try {
         const notice = await Notice.create(req.body);
@@ -18,8 +16,6 @@ const createNotice = async (req, res) => {
         });
     }
 };
-
-// Get All Notices
 const getNotices = async (req, res) => {
     try {
         const notices = await Notice.find().sort({ date: -1 });
@@ -37,8 +33,6 @@ const getNotices = async (req, res) => {
         });
     }
 };
-
-// Update Notice
 const updateNotice = async (req, res) => {
     try {
 
@@ -73,8 +67,6 @@ const updateNotice = async (req, res) => {
 
     }
 };
-
-// Delete Notice
 const deleteNotice = async (req, res) => {
     try {
 
