@@ -190,3 +190,35 @@ body{
     }
 
 }
+@media (min-width:769px){
+
+    body{
+        padding:30px;
+    }
+
+    .phone{
+        width:1200px;
+        height:800px;
+        border-radius:30px;
+    }
+
+    .logo-container{
+        width:330px;
+        height:330px;
+        margin-top:85px;
+    }
+
+    .hero-text{
+        width:700px;
+        margin-top:25px;
+        font-size:28px;
+        line-height:40px;
+    }
+
+    .start-btn{
+        width:360px;
+        height:88px;
+        margin-top:45px;
+        font-size:36px;
+    }
+}
