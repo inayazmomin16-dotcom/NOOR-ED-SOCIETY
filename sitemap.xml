@@ -7,19 +7,11 @@
     </url>
 
     <url>
-        <loc>https://noor-ed-society.onrender.com/home.html</loc>
-    </url>
-
-    <url>
         <loc>https://noor-ed-society.onrender.com/about.html</loc>
     </url>
 
     <url>
         <loc>https://noor-ed-society.onrender.com/contact.html</loc>
-    </url>
-
-    <url>
-        <loc>https://noor-ed-society.onrender.com/elearning.html</loc>
     </url>
 
     <url>
@@ -32,6 +24,10 @@
 
     <url>
         <loc>https://noor-ed-society.onrender.com/schedule.html</loc>
+    </url>
+
+    <url>
+        <loc>https://noor-ed-society.onrender.com/elearning.html</loc>
     </url>
 
 </urlset>
