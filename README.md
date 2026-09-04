@@ -253,5 +253,8 @@ NOOR-ED-SOCIETY/
 ├── schedule.html
 │
 ├── .gitignore
+├── robots.txt
+├── sitemap.html
 ├── package.json
+├── package-lock.json
 └── README.md
