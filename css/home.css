@@ -904,7 +904,7 @@ html{
 
 .mobile-menu{
     position:absolute;
-    top:72px;
+    top:74px;
     left:0;
     width:100%;
     background:#ffffff;
@@ -966,6 +966,52 @@ html{
     }
 }
 
+@media (min-width:769px) and (max-width:1199px){
+
+    .mobile-menu{
+        top:82px;
+        left:auto;
+        right:25px;
+        width:320px;
+        border-radius:0 0 20px 20px;
+    }
+}
+
+@media (min-width:1200px){
+
+    .mobile-menu{
+        top:90px;
+        left:auto;
+        right:35px;
+        width:320px;
+        border-radius:0 0 20px 20px;
+    }
+}
+
+@media (min-width:1600px){
+
+    .mobile-menu{
+        right:45px;
+        width:320px;
+    }
+}
+
+@media (min-width:1200px){
+    .mobile-menu{
+        top:90px;
+        left:auto;
+        right:35px;
+        width:320px;
+        border-radius:0 0 20px 20px;
+    }
+}
+
+@media (min-width:1600px){
+    .mobile-menu{
+        right:45px;
+        width:320px;
+    }
+}
 @media (max-width:392px){
 
     html,
