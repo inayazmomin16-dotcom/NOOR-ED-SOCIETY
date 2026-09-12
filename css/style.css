@@ -1,76 +1,116 @@
+/* =========================================================
+   RESET
+   ========================================================= */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
+
+/* =========================================================
+   HTML + BODY
+   ========================================================= */
+
+html,
 body{
+    width:100%;
+    min-height:100%;
+}
 
+body{
     font-family:'Inter',sans-serif;
-
     background:#1c1c1c;
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 
     min-height:100vh;
+    min-height:100dvh;
+
+    overflow:hidden;
 }
 
+
+/* =========================================================
+   MAIN APP CONTAINER
+   ========================================================= */
+
 .app-container{
+    width:100%;
+    height:100vh;
+    height:100dvh;
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 }
 
+
+/* =========================================================
+   MAIN PHONE / APP FRAME
+   DEFAULT = MOBILE DESIGN
+   ========================================================= */
+
 .phone{
-
     width:393px;
-
     height:852px;
+
+    max-width:100vw;
+    max-height:100vh;
+    max-height:100dvh;
 
     border-radius:30px;
 
     overflow:hidden;
 
     background:linear-gradient(
-    180deg,
-    #0A1128 0%,
-    #0F1A3C 27.4%,
-    #243C8E 55.2%,
-    #162558 74%,
-    #101C42 100%);
+        180deg,
+        #0A1128 0%,
+        #0F1A3C 27.4%,
+        #243C8E 55.2%,
+        #162558 74%,
+        #101C42 100%
+    );
 
     box-shadow:0 20px 50px rgba(0,0,0,.45);
 
     position:relative;
+
+    flex-shrink:0;
 }
 
-.hero{
 
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero{
     width:100%;
     height:100%;
 
     display:flex;
-
     flex-direction:column;
-
     align-items:center;
 }
 
 
-.logo-container{
+/* =========================================================
+   LOGO CONTAINER
+   ========================================================= */
 
+.logo-container{
     margin-top:164px;
 
     width:293px;
-
     height:293px;
+
+    max-width:calc(100% - 40px);
+    max-height:calc(100% - 40px);
+
+    aspect-ratio:1 / 1;
 
     border-radius:50%;
 
@@ -78,20 +118,37 @@ body{
 
     animation:fadeIn 1.5s ease;
 
+    flex-shrink:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
+
+
+/* =========================================================
+   LOGO IMAGE
+   ========================================================= */
 
 .logo{
-
     width:100%;
-
     height:100%;
 
-    object-fit:cover;
+    object-fit:contain;
+    object-position:center;
+
+    display:block;
 }
 
-.hero-text{
 
+/* =========================================================
+   HERO TEXT
+   ========================================================= */
+
+.hero-text{
     width:360px;
+
+    max-width:calc(100% - 30px);
 
     margin-top:23px;
 
@@ -100,7 +157,6 @@ body{
     text-align:center;
 
     font-size:24px;
-
     font-weight:500;
 
     line-height:34px;
@@ -108,11 +164,19 @@ body{
     animation:slideUp 1.2s ease;
 }
 
-.start-btn{
 
+/* =========================================================
+   START BUTTON
+   ========================================================= */
+
+.start-btn{
     width:321px;
 
+    max-width:calc(100% - 40px);
+
     height:91px;
+
+    min-height:60px;
 
     margin-top:56px;
 
@@ -123,70 +187,944 @@ body{
     cursor:pointer;
 
     background:linear-gradient(
-    90deg,
-    #A66C19 0%,
-    #FFA527 31.25%,
-    #EDD568 73.55%,
-    #996317 100%);
+        90deg,
+        #A66C19 0%,
+        #FFA527 31.25%,
+        #EDD568 73.55%,
+        #996317 100%
+    );
 
     color:#0A1128;
 
     font-size:36px;
-
     font-weight:700;
 
-    transition:.35s;
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
 }
+
+
+/* =========================================================
+   BUTTON HOVER
+   ========================================================= */
 
 .start-btn:hover{
-
     transform:translateY(-5px);
 
-    box-shadow:0 12px 30px rgba(255,165,39,.45);
+    box-shadow:
+        0 12px 30px rgba(255,165,39,.45);
 }
 
-.start-btn:active{
 
+/* =========================================================
+   BUTTON ACTIVE
+   ========================================================= */
+
+.start-btn:active{
     transform:scale(.97);
 }
 
 
+/* =========================================================
+   SMALL MOBILE
+   320px - 392px
+   ========================================================= */
+
+@media (max-width:392px){
+
+    html,
+    body{
+        width:100%;
+        height:100%;
+    }
+
+    body{
+        overflow:hidden;
+    }
+
+    .app-container{
+        width:100vw;
+
+        height:100vh;
+        height:100dvh;
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .phone{
+        width:100vw;
+
+        height:100vh;
+        height:100dvh;
+
+        max-width:100vw;
+        max-height:100vh;
+        max-height:100dvh;
+
+        border-radius:0;
+
+        box-shadow:none;
+    }
+
+    .hero{
+        width:100%;
+        height:100%;
+    }
+
+    .logo-container{
+        width:min(74vw,293px);
+        height:min(74vw,293px);
+
+        margin-top:19vh;
+
+        max-width:calc(100% - 40px);
+        max-height:none;
+    }
+
+    .hero-text{
+        width:92%;
+
+        max-width:360px;
+
+        margin-top:5.5vw;
+
+        font-size:clamp(
+            18px,
+            6vw,
+            24px
+        );
+
+        line-height:1.4;
+    }
+
+    .start-btn{
+        width:82%;
+
+        max-width:321px;
+
+        height:clamp(
+            65px,
+            18vw,
+            91px
+        );
+
+        margin-top:10vw;
+
+        font-size:clamp(
+            26px,
+            9vw,
+            36px
+        );
+    }
+}
+
+
+/* =========================================================
+   NORMAL ANDROID / MOBILE
+   393px - 768px
+
+   MAIN USER EXPERIENCE
+   ========================================================= */
+
+@media (min-width:393px) and (max-width:768px){
+
+    html,
+    body{
+        width:100%;
+        height:100%;
+    }
+
+    body{
+        overflow:hidden;
+    }
+
+    .app-container{
+        width:100vw;
+
+        height:100vh;
+        height:100dvh;
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .phone{
+        width:393px;
+        height:852px;
+
+        max-width:100vw;
+        max-height:100vh;
+        max-height:100dvh;
+
+        border-radius:30px;
+
+        box-shadow:
+            0 20px 50px rgba(0,0,0,.45);
+    }
+
+    .hero{
+        width:100%;
+        height:100%;
+    }
+
+    .logo-container{
+        width:min(74vw,293px);
+        height:min(74vw,293px);
+
+        margin-top:19vh;
+
+        max-width:calc(100% - 40px);
+    }
+
+    .hero-text{
+        width:92%;
+
+        max-width:360px;
+
+        margin-top:5.5vw;
+
+        font-size:clamp(
+            18px,
+            6vw,
+            24px
+        );
+
+        line-height:1.4;
+    }
+
+    .start-btn{
+        width:82%;
+
+        max-width:321px;
+
+        height:clamp(
+            65px,
+            18vw,
+            91px
+        );
+
+        margin-top:10vw;
+
+        font-size:clamp(
+            26px,
+            9vw,
+            36px
+        );
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   769px - 1199px
+   ========================================================= */
+
+@media (min-width:769px) and (max-width:1199px){
+
+    html,
+    body{
+        width:100%;
+        height:100%;
+    }
+
+    body{
+        overflow:hidden;
+    }
+
+    .app-container{
+        width:100vw;
+
+        height:100vh;
+        height:100dvh;
+    }
+
+    .phone{
+        width:92vw;
+
+        height:92vh;
+        height:92dvh;
+
+        max-width:1100px;
+        max-height:900px;
+
+        border-radius:30px;
+
+        box-shadow:
+            0 20px 50px rgba(0,0,0,.45);
+    }
+
+    .hero{
+        width:100%;
+        height:100%;
+    }
+
+    .logo-container{
+        width:clamp(
+            260px,
+            30vw,
+            350px
+        );
+
+        height:clamp(
+            260px,
+            30vw,
+            350px
+        );
+
+        margin-top:8vh;
+    }
+
+    .hero-text{
+        width:min(
+            700px,
+            78%
+        );
+
+        margin-top:3vh;
+
+        font-size:clamp(
+            24px,
+            3vw,
+            32px
+        );
+
+        line-height:1.4;
+    }
+
+    .start-btn{
+        width:clamp(
+            300px,
+            32vw,
+            400px
+        );
+
+        height:clamp(
+            70px,
+            10vh,
+            95px
+        );
+
+        margin-top:5vh;
+
+        font-size:clamp(
+            28px,
+            3vw,
+            38px
+        );
+    }
+}
+
+
+/* =========================================================
+   LAPTOP
+   1200px - 1399px
+   ========================================================= */
+
+@media (min-width:1200px) and (max-width:1399px){
+
+    html,
+    body{
+        width:100%;
+        height:100%;
+    }
+
+    body{
+        overflow:hidden;
+    }
+
+    .app-container{
+        width:100vw;
+
+        height:100vh;
+        height:100dvh;
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .phone{
+        width:94vw;
+
+        height:92vh;
+        height:92dvh;
+
+        max-width:1350px;
+        max-height:900px;
+
+        border-radius:30px;
+
+        box-shadow:
+            0 20px 50px rgba(0,0,0,.45);
+    }
+
+    .hero{
+        width:100%;
+        height:100%;
+    }
+
+    .logo-container{
+        width:clamp(
+            300px,
+            26vw,
+            370px
+        );
+
+        height:clamp(
+            300px,
+            26vw,
+            370px
+        );
+
+        margin-top:7vh;
+    }
+
+    .hero-text{
+        width:min(
+            800px,
+            70%
+        );
+
+        margin-top:3vh;
+
+        font-size:clamp(
+            26px,
+            2.2vw,
+            34px
+        );
+
+        line-height:1.4;
+    }
+
+    .start-btn{
+        width:clamp(
+            330px,
+            28vw,
+            420px
+        );
+
+        height:clamp(
+            75px,
+            10vh,
+            100px
+        );
+
+        margin-top:5vh;
+
+        font-size:clamp(
+            30px,
+            2.5vw,
+            40px
+        );
+    }
+}
+
+
+/* =========================================================
+   FULL DESKTOP
+   1400px+
+
+   IMPORTANT:
+   WEBSITE FILLS ENTIRE SCREEN
+   NO OUTER BLANK SPACE
+   ========================================================= */
+
+@media (min-width:1400px){
+
+    html,
+    body{
+        width:100%;
+        height:100%;
+
+        margin:0;
+        padding:0;
+    }
+
+    body{
+        overflow:hidden;
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .app-container{
+        width:100vw;
+
+        height:100vh;
+        height:100dvh;
+
+        margin:0;
+        padding:0;
+
+        display:flex;
+
+        justify-content:center;
+        align-items:center;
+    }
+
+    .phone{
+        /*
+           FULL SCREEN DESKTOP
+        */
+
+        width:100vw;
+
+        height:100vh;
+        height:100dvh;
+
+        max-width:none;
+        max-height:none;
+
+        margin:0;
+        padding:0;
+
+        border-radius:0;
+
+        box-shadow:none;
+
+        overflow:hidden;
+    }
+
+    .hero{
+        width:100%;
+        height:100%;
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:center;
+
+        justify-content:flex-start;
+    }
+
+    .logo-container{
+        width:clamp(
+            320px,
+            27vw,
+            400px
+        );
+
+        height:clamp(
+            320px,
+            27vw,
+            400px
+        );
+
+        margin-top:7vh;
+
+        max-width:none;
+        max-height:none;
+
+        flex-shrink:0;
+    }
+
+    .logo{
+        width:100%;
+        height:100%;
+
+        object-fit:contain;
+
+        object-position:center;
+    }
+
+    .hero-text{
+        width:min(
+            900px,
+            70vw
+        );
+
+        max-width:900px;
+
+        margin-top:3vh;
+
+        font-size:clamp(
+            28px,
+            2.35vw,
+            36px
+        );
+
+        line-height:1.4;
+
+        text-align:center;
+    }
+
+    .start-btn{
+        width:clamp(
+            360px,
+            29vw,
+            450px
+        );
+
+        height:clamp(
+            80px,
+            10vh,
+            105px
+        );
+
+        margin-top:5vh;
+
+        font-size:clamp(
+            32px,
+            2.7vw,
+            42px
+        );
+
+        flex-shrink:0;
+    }
+}
+
+
+/* =========================================================
+   1440 x 1024
+   SPECIAL PRESENTATION OPTIMIZATION
+   ========================================================= */
+
+@media (min-width:1400px) and (max-width:1600px)
+       and (min-height:900px){
+
+    .logo-container{
+        width:380px;
+        height:380px;
+
+        margin-top:6.5vh;
+    }
+
+    .hero-text{
+        width:min(
+            850px,
+            70vw
+        );
+
+        margin-top:2.8vh;
+
+        font-size:34px;
+
+        line-height:1.38;
+    }
+
+    .start-btn{
+        width:420px;
+        height:100px;
+
+        margin-top:4.5vh;
+
+        font-size:40px;
+    }
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+   1920px+
+   ========================================================= */
+
+@media (min-width:1920px){
+
+    .phone{
+        width:100vw;
+        height:100vh;
+        height:100dvh;
+
+        border-radius:0;
+    }
+
+    .logo-container{
+        width:400px;
+        height:400px;
+
+        margin-top:7vh;
+    }
+
+    .hero-text{
+        width:900px;
+
+        font-size:36px;
+
+        line-height:1.4;
+    }
+
+    .start-btn{
+        width:450px;
+        height:105px;
+
+        margin-top:5vh;
+
+        font-size:42px;
+    }
+}
+
+
+/* =========================================================
+   SHORT MOBILE
+   MAX HEIGHT 700px
+   ========================================================= */
+
+@media (max-width:768px) and (max-height:700px){
+
+    html,
+    body{
+        width:100%;
+        height:100%;
+    }
+
+    body{
+        overflow:hidden;
+    }
+
+    .app-container{
+        width:100vw;
+
+        height:100vh;
+        height:100dvh;
+    }
+
+    .phone{
+        width:100vw;
+
+        height:100vh;
+        height:100dvh;
+
+        max-width:100vw;
+        max-height:100dvh;
+
+        border-radius:0;
+
+        box-shadow:none;
+    }
+
+    .logo-container{
+        width:min(
+            45vh,
+            293px
+        );
+
+        height:min(
+            45vh,
+            293px
+        );
+
+        margin-top:8vh;
+    }
+
+    .hero-text{
+        width:92%;
+
+        margin-top:3vh;
+
+        font-size:clamp(
+            18px,
+            4vw,
+            24px
+        );
+
+        line-height:1.35;
+    }
+
+    .start-btn{
+        width:82%;
+
+        max-width:321px;
+
+        height:min(
+            11vh,
+            91px
+        );
+
+        margin-top:5vh;
+
+        font-size:clamp(
+            24px,
+            6vw,
+            36px
+        );
+    }
+}
+
+
+/* =========================================================
+   VERY SHORT MOBILE
+   MAX HEIGHT 600px
+
+   PREVENTS CONTENT COLLISION
+   ========================================================= */
+
+@media (max-width:768px) and (max-height:600px){
+
+    .logo-container{
+        width:min(
+            38vh,
+            240px
+        );
+
+        height:min(
+            38vh,
+            240px
+        );
+
+        margin-top:5vh;
+    }
+
+    .hero-text{
+        width:92%;
+
+        margin-top:2vh;
+
+        font-size:clamp(
+            17px,
+            4vw,
+            22px
+        );
+
+        line-height:1.3;
+    }
+
+    .start-btn{
+        width:82%;
+
+        height:min(
+            10vh,
+            70px
+        );
+
+        margin-top:3vh;
+
+        font-size:clamp(
+            22px,
+            6vw,
+            32px
+        );
+    }
+}
+
+
+/* =========================================================
+   LANDSCAPE MOBILE
+   Useful for phones turned sideways
+   ========================================================= */
+
+@media (max-width:900px)
+       and (orientation:landscape){
+
+    body{
+        overflow:hidden;
+    }
+
+    .phone{
+        width:100vw;
+        height:100dvh;
+
+        border-radius:0;
+
+        box-shadow:none;
+    }
+
+    .hero{
+        justify-content:flex-start;
+    }
+
+    .logo-container{
+        width:min(
+            42vh,
+            240px
+        );
+
+        height:min(
+            42vh,
+            240px
+        );
+
+        margin-top:4vh;
+    }
+
+    .hero-text{
+        width:min(
+            700px,
+            80%
+        );
+
+        margin-top:2vh;
+
+        font-size:clamp(
+            17px,
+            3vw,
+            24px
+        );
+
+        line-height:1.3;
+    }
+
+    .start-btn{
+        width:min(
+            350px,
+            70%
+        );
+
+        height:min(
+            13vh,
+            70px
+        );
+
+        margin-top:3vh;
+
+        font-size:clamp(
+            22px,
+            5vw,
+            32px
+        );
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:0.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:0.01ms !important;
+        scroll-behavior:auto !important;
+    }
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
 @keyframes fadeIn{
 
     from{
-
         opacity:0;
-
         transform:scale(.7);
-
     }
 
     to{
-
         opacity:1;
-
         transform:scale(1);
-
     }
-
 }
+
 
 @keyframes slideUp{
 
     from{
-
         opacity:0;
-
         transform:translateY(30px);
-
     }
 
     to{
-
         opacity:1;
-
         transform:translateY(0);
-
     }
-
 }
