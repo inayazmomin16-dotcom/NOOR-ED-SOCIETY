@@ -2401,80 +2401,49 @@ html{
     }
 }
 
-
-@media (min-width:769px){
-
-    .footer{
-        padding:55px 60px 30px;
-    }
-
-    .footer-top{
-        display:flex;
-        align-items:center;
-        gap:22px;
-        margin-bottom:45px;
-    }
-
-    .footer-logo{
-        width:120px;
-        height:120px;
-    }
-
-    .footer-heading h2{
-        font-size:30px;
-    }
-
-    .footer-heading p{
-        font-size:16px;
-        line-height:1.6;
-    }
-
-    .footer-section{
-        margin-bottom:0;
-    }
+@media (min-width:1200px){
 
     .footer{
         display:grid;
         grid-template-columns:1.5fr 1fr 1fr 1.35fr;
-        column-gap:55px;
+        column-gap:70px;
         row-gap:35px;
         align-items:start;
+        padding:65px 7vw 30px;
     }
 
-    .footer-top{
+    .footer > .footer-top{
         grid-column:1;
         grid-row:1;
+        display:flex;
+        align-items:center;
+        gap:22px;
+        margin-bottom:0;
     }
 
-    .footer-section:nth-of-type(1){
+    .footer > .footer-section:nth-child(2){
         grid-column:2;
         grid-row:1;
+        margin-bottom:0;
     }
 
-    .footer-section:nth-of-type(2){
+    .footer > .footer-section:nth-child(3){
         grid-column:3;
         grid-row:1;
+        margin-bottom:0;
     }
 
-    .footer-section:nth-of-type(3){
+    .footer > .footer-section:nth-child(4){
         grid-column:4;
         grid-row:1;
+        margin-bottom:0;
     }
 
-    .footer-bottom{
+    .footer > .footer-bottom{
         grid-column:1 / -1;
         grid-row:2;
         width:100%;
         margin-top:15px;
-    }
-
-}
-
-@media (min-width:1200px){
-
-    .footer{
-        padding:65px 7vw 30px;
-        column-gap:70px;
     }
 
     .footer-logo{
@@ -2499,9 +2468,51 @@ html{
         line-height:1.7;
     }
 
+    .gallery-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
 }
 
 @media (min-width:1600px){
+
+    .phone{
+        width:100%;
+        max-width:none;
+        min-height:100vh;
+        border-radius:0;
+        box-shadow:none;
+    }
+
+    .gallery-hero{
+        padding-left:80px;
+        padding-right:80px;
+    }
+
+    .gallery-hero h2{
+        font-size:52px;
+    }
+
+    .hero-text{
+        font-size:19px;
+        max-width:1200px;
+    }
+
+    .filters{
+        padding-left:80px;
+        padding-right:80px;
+    }
+
+    .gallery-grid{
+        grid-template-columns:repeat(4,1fr);
+        max-width:1800px;
+        padding-left:55px;
+        padding-right:55px;
+        gap:30px;
+    }
+
+    .gallery-card img{
+        height:340px;
+    }
 
     .footer{
         padding-left:8vw;
@@ -2513,5 +2524,4 @@ html{
         width:145px;
         height:145px;
     }
-
 }
