@@ -1,6 +1,3 @@
-/* =========================================================
-   RESET
-   ========================================================= */
 
 *{
     margin:0;
@@ -19,13 +16,14 @@ body{
     min-height:100%;
 }
 
-body{
-    font-family:'Inter',sans-serif;
-    background:#1c1c1c;
+html{
+    scroll-behavior:smooth;
+}
 
-    display:flex;
-    justify-content:center;
-    align-items:center;
+body{
+    font-family:'Inter', sans-serif;
+
+    background:#1c1c1c;
 
     min-height:100vh;
     min-height:100dvh;
@@ -50,8 +48,8 @@ body{
 
 
 /* =========================================================
-   MAIN PHONE / APP FRAME
-   DEFAULT = MOBILE DESIGN
+   MAIN APP / PHONE FRAME
+   DEFAULT
    ========================================================= */
 
 .phone{
@@ -59,12 +57,15 @@ body{
     height:852px;
 
     max-width:100vw;
-    max-height:100vh;
     max-height:100dvh;
 
-    border-radius:30px;
+    position:relative;
 
     overflow:hidden;
+
+    flex-shrink:0;
+
+    border-radius:30px;
 
     background:linear-gradient(
         180deg,
@@ -75,11 +76,8 @@ body{
         #101C42 100%
     );
 
-    box-shadow:0 20px 50px rgba(0,0,0,.45);
-
-    position:relative;
-
-    flex-shrink:0;
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.45);
 }
 
 
@@ -94,6 +92,9 @@ body{
     display:flex;
     flex-direction:column;
     align-items:center;
+    justify-content:flex-start;
+
+    overflow:hidden;
 }
 
 
@@ -102,42 +103,42 @@ body{
    ========================================================= */
 
 .logo-container{
-    margin-top:164px;
-
     width:293px;
     height:293px;
+
+    margin-top:164px;
 
     max-width:calc(100% - 40px);
     max-height:calc(100% - 40px);
 
     aspect-ratio:1 / 1;
 
-    border-radius:50%;
-
-    overflow:hidden;
-
-    animation:fadeIn 1.5s ease;
-
     flex-shrink:0;
 
     display:flex;
     justify-content:center;
     align-items:center;
+
+    overflow:hidden;
+
+    border-radius:50%;
+
+    animation:fadeIn 1.5s ease;
 }
 
 
 /* =========================================================
-   LOGO IMAGE
+   LOGO
    ========================================================= */
 
 .logo{
     width:100%;
     height:100%;
 
+    display:block;
+
     object-fit:contain;
     object-position:center;
-
-    display:block;
 }
 
 
@@ -152,14 +153,14 @@ body{
 
     margin-top:23px;
 
-    color:white;
+    color:#fff;
 
     text-align:center;
 
     font-size:24px;
     font-weight:500;
 
-    line-height:34px;
+    line-height:1.4;
 
     animation:slideUp 1.2s ease;
 }
@@ -171,17 +172,15 @@ body{
 
 .start-btn{
     width:321px;
+    height:91px;
 
     max-width:calc(100% - 40px);
 
-    height:91px;
-
-    min-height:60px;
-
     margin-top:56px;
 
-    border:none;
+    flex-shrink:0;
 
+    border:none;
     border-radius:60px;
 
     cursor:pointer;
@@ -227,26 +226,16 @@ body{
 
 
 /* =========================================================
-   SMALL MOBILE
+   =========================================================
+   SMALL PHONES
    320px - 392px
+   =========================================================
    ========================================================= */
 
 @media (max-width:392px){
 
-    html,
-    body{
-        width:100%;
-        height:100%;
-    }
-
-    body{
-        overflow:hidden;
-    }
-
     .app-container{
         width:100vw;
-
-        height:100vh;
         height:100dvh;
 
         display:flex;
@@ -256,40 +245,44 @@ body{
 
     .phone{
         width:100vw;
-
-        height:100vh;
         height:100dvh;
 
-        max-width:100vw;
-        max-height:100vh;
-        max-height:100dvh;
+        max-width:none;
+        max-height:none;
 
         border-radius:0;
 
         box-shadow:none;
     }
 
-    .hero{
-        width:100%;
-        height:100%;
-    }
-
     .logo-container{
-        width:min(74vw,293px);
-        height:min(74vw,293px);
 
-        margin-top:19vh;
+        /*
+           Scales with screen width
+           without becoming too large
+        */
+
+        width:min(
+            74vw,
+            293px
+        );
+
+        height:min(
+            74vw,
+            293px
+        );
+
+        margin-top:18vh;
 
         max-width:calc(100% - 40px);
-        max-height:none;
     }
 
     .hero-text{
-        width:92%;
 
+        width:92%;
         max-width:360px;
 
-        margin-top:5.5vw;
+        margin-top:5vw;
 
         font-size:clamp(
             18px,
@@ -301,17 +294,17 @@ body{
     }
 
     .start-btn{
-        width:82%;
 
+        width:82%;
         max-width:321px;
 
         height:clamp(
-            65px,
+            64px,
             18vw,
             91px
         );
 
-        margin-top:10vw;
+        margin-top:9vw;
 
         font-size:clamp(
             26px,
@@ -323,28 +316,14 @@ body{
 
 
 /* =========================================================
-   NORMAL ANDROID / MOBILE
-   393px - 768px
-
-   MAIN USER EXPERIENCE
+   NORMAL PHONES
+   393px - 767px
    ========================================================= */
 
-@media (min-width:393px) and (max-width:768px){
-
-    html,
-    body{
-        width:100%;
-        height:100%;
-    }
-
-    body{
-        overflow:hidden;
-    }
+@media (min-width:393px) and (max-width:767px){
 
     .app-container{
         width:100vw;
-
-        height:100vh;
         height:100dvh;
 
         display:flex;
@@ -357,7 +336,6 @@ body{
         height:852px;
 
         max-width:100vw;
-        max-height:100vh;
         max-height:100dvh;
 
         border-radius:30px;
@@ -366,23 +344,24 @@ body{
             0 20px 50px rgba(0,0,0,.45);
     }
 
-    .hero{
-        width:100%;
-        height:100%;
-    }
-
     .logo-container{
-        width:min(74vw,293px);
-        height:min(74vw,293px);
+
+        width:min(
+            74vw,
+            293px
+        );
+
+        height:min(
+            74vw,
+            293px
+        );
 
         margin-top:19vh;
-
-        max-width:calc(100% - 40px);
     }
 
     .hero-text{
-        width:92%;
 
+        width:92%;
         max-width:360px;
 
         margin-top:5.5vw;
@@ -397,8 +376,8 @@ body{
     }
 
     .start-btn{
-        width:82%;
 
+        width:82%;
         max-width:321px;
 
         height:clamp(
@@ -419,33 +398,17 @@ body{
 
 
 /* =========================================================
+   =========================================================
    TABLET
-   769px - 1199px
+   768px - 1199px
+   =========================================================
    ========================================================= */
 
-@media (min-width:769px) and (max-width:1199px){
-
-    html,
-    body{
-        width:100%;
-        height:100%;
-    }
-
-    body{
-        overflow:hidden;
-    }
-
-    .app-container{
-        width:100vw;
-
-        height:100vh;
-        height:100dvh;
-    }
+@media (min-width:768px) and (max-width:1199px){
 
     .phone{
-        width:92vw;
 
-        height:92vh;
+        width:92vw;
         height:92dvh;
 
         max-width:1100px;
@@ -457,12 +420,8 @@ body{
             0 20px 50px rgba(0,0,0,.45);
     }
 
-    .hero{
-        width:100%;
-        height:100%;
-    }
-
     .logo-container{
+
         width:clamp(
             260px,
             30vw,
@@ -479,6 +438,7 @@ body{
     }
 
     .hero-text{
+
         width:min(
             700px,
             78%
@@ -496,6 +456,7 @@ body{
     }
 
     .start-btn{
+
         width:clamp(
             300px,
             32vw,
@@ -520,41 +481,25 @@ body{
 
 
 /* =========================================================
+   =========================================================
    LAPTOP
-   1200px - 1399px
+   1200px - 1439px
+   =========================================================
    ========================================================= */
 
-@media (min-width:1200px) and (max-width:1399px){
-
-    html,
-    body{
-        width:100%;
-        height:100%;
-    }
-
-    body{
-        overflow:hidden;
-    }
-
-    .app-container{
-        width:100vw;
-
-        height:100vh;
-        height:100dvh;
-
-        display:flex;
-        justify-content:center;
-        align-items:center;
-    }
+@media (min-width:1200px) and (max-width:1439px){
 
     .phone{
-        width:94vw;
 
-        height:92vh;
+        /*
+           Proper desktop application area
+        */
+
+        width:94vw;
         height:92dvh;
 
-        max-width:1350px;
-        max-height:900px;
+        max-width:1400px;
+        max-height:950px;
 
         border-radius:30px;
 
@@ -562,12 +507,8 @@ body{
             0 20px 50px rgba(0,0,0,.45);
     }
 
-    .hero{
-        width:100%;
-        height:100%;
-    }
-
     .logo-container{
+
         width:clamp(
             300px,
             26vw,
@@ -584,6 +525,7 @@ body{
     }
 
     .hero-text{
+
         width:min(
             800px,
             70%
@@ -601,6 +543,7 @@ body{
     }
 
     .start-btn{
+
         width:clamp(
             330px,
             28vw,
@@ -625,41 +568,26 @@ body{
 
 
 /* =========================================================
-   FULL DESKTOP
-   1400px+
-
-   IMPORTANT:
-   WEBSITE FILLS ENTIRE SCREEN
-   NO OUTER BLANK SPACE
+   =========================================================
+   DESKTOP
+   1440px+
+   =========================================================
+   FULL SCREEN
+   =========================================================
    ========================================================= */
 
-@media (min-width:1400px){
-
-    html,
-    body{
-        width:100%;
-        height:100%;
-
-        margin:0;
-        padding:0;
-    }
+@media (min-width:1440px){
 
     body{
-        overflow:hidden;
+        background:#1c1c1c;
 
-        display:flex;
-        justify-content:center;
-        align-items:center;
+        display:block;
     }
 
     .app-container{
+
         width:100vw;
-
-        height:100vh;
         height:100dvh;
-
-        margin:0;
-        padding:0;
 
         display:flex;
 
@@ -668,13 +596,12 @@ body{
     }
 
     .phone{
+
         /*
-           FULL SCREEN DESKTOP
+           FULL DESKTOP SCREEN
         */
 
         width:100vw;
-
-        height:100vh;
         height:100dvh;
 
         max-width:none;
@@ -686,11 +613,10 @@ body{
         border-radius:0;
 
         box-shadow:none;
-
-        overflow:hidden;
     }
 
     .hero{
+
         width:100%;
         height:100%;
 
@@ -699,41 +625,40 @@ body{
         flex-direction:column;
 
         align-items:center;
-
         justify-content:flex-start;
     }
 
     .logo-container{
+
         width:clamp(
-            320px,
-            27vw,
-            400px
+            340px,
+            25vw,
+            420px
         );
 
         height:clamp(
-            320px,
-            27vw,
-            400px
+            340px,
+            25vw,
+            420px
         );
 
         margin-top:7vh;
 
         max-width:none;
         max-height:none;
-
-        flex-shrink:0;
     }
 
     .logo{
+
         width:100%;
         height:100%;
 
         object-fit:contain;
-
         object-position:center;
     }
 
     .hero-text{
+
         width:min(
             900px,
             70vw
@@ -745,7 +670,7 @@ body{
 
         font-size:clamp(
             28px,
-            2.35vw,
+            2.3vw,
             36px
         );
 
@@ -755,9 +680,10 @@ body{
     }
 
     .start-btn{
+
         width:clamp(
             360px,
-            29vw,
+            28vw,
             450px
         );
 
@@ -771,24 +697,23 @@ body{
 
         font-size:clamp(
             32px,
-            2.7vw,
+            2.6vw,
             42px
         );
-
-        flex-shrink:0;
     }
 }
 
 
 /* =========================================================
-   1440 x 1024
-   SPECIAL PRESENTATION OPTIMIZATION
+   1440p / 1600px DESKTOP OPTIMIZATION
    ========================================================= */
 
-@media (min-width:1400px) and (max-width:1600px)
-       and (min-height:900px){
+@media (min-width:1440px)
+       and (max-width:1600px)
+       and (min-height:850px){
 
     .logo-container{
+
         width:380px;
         height:380px;
 
@@ -796,6 +721,7 @@ body{
     }
 
     .hero-text{
+
         width:min(
             850px,
             70vw
@@ -809,6 +735,7 @@ body{
     }
 
     .start-btn{
+
         width:420px;
         height:100px;
 
@@ -826,15 +753,8 @@ body{
 
 @media (min-width:1920px){
 
-    .phone{
-        width:100vw;
-        height:100vh;
-        height:100dvh;
-
-        border-radius:0;
-    }
-
     .logo-container{
+
         width:400px;
         height:400px;
 
@@ -842,7 +762,10 @@ body{
     }
 
     .hero-text{
+
         width:900px;
+
+        margin-top:3vh;
 
         font-size:36px;
 
@@ -850,6 +773,7 @@ body{
     }
 
     .start-btn{
+
         width:450px;
         height:105px;
 
@@ -862,36 +786,16 @@ body{
 
 /* =========================================================
    SHORT MOBILE
-   MAX HEIGHT 700px
+   max-height:700px
    ========================================================= */
 
-@media (max-width:768px) and (max-height:700px){
-
-    html,
-    body{
-        width:100%;
-        height:100%;
-    }
-
-    body{
-        overflow:hidden;
-    }
-
-    .app-container{
-        width:100vw;
-
-        height:100vh;
-        height:100dvh;
-    }
+@media (max-width:767px)
+       and (max-height:700px){
 
     .phone{
+
         width:100vw;
-
-        height:100vh;
         height:100dvh;
-
-        max-width:100vw;
-        max-height:100dvh;
 
         border-radius:0;
 
@@ -899,6 +803,7 @@ body{
     }
 
     .logo-container{
+
         width:min(
             45vh,
             293px
@@ -913,6 +818,7 @@ body{
     }
 
     .hero-text{
+
         width:92%;
 
         margin-top:3vh;
@@ -927,8 +833,8 @@ body{
     }
 
     .start-btn{
-        width:82%;
 
+        width:82%;
         max-width:321px;
 
         height:min(
@@ -949,14 +855,14 @@ body{
 
 /* =========================================================
    VERY SHORT MOBILE
-   MAX HEIGHT 600px
-
-   PREVENTS CONTENT COLLISION
+   max-height:600px
    ========================================================= */
 
-@media (max-width:768px) and (max-height:600px){
+@media (max-width:767px)
+       and (max-height:600px){
 
     .logo-container{
+
         width:min(
             38vh,
             240px
@@ -971,6 +877,7 @@ body{
     }
 
     .hero-text{
+
         width:92%;
 
         margin-top:2vh;
@@ -985,6 +892,7 @@ body{
     }
 
     .start-btn{
+
         width:82%;
 
         height:min(
@@ -1005,7 +913,6 @@ body{
 
 /* =========================================================
    LANDSCAPE MOBILE
-   Useful for phones turned sideways
    ========================================================= */
 
 @media (max-width:900px)
@@ -1015,9 +922,23 @@ body{
         overflow:hidden;
     }
 
-    .phone{
+    .app-container{
+
         width:100vw;
         height:100dvh;
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .phone{
+
+        width:100vw;
+        height:100dvh;
+
+        max-width:none;
+        max-height:none;
 
         border-radius:0;
 
@@ -1025,10 +946,12 @@ body{
     }
 
     .hero{
+
         justify-content:flex-start;
     }
 
     .logo-container{
+
         width:min(
             42vh,
             240px
@@ -1043,6 +966,7 @@ body{
     }
 
     .hero-text{
+
         width:min(
             700px,
             80%
@@ -1060,6 +984,7 @@ body{
     }
 
     .start-btn{
+
         width:min(
             350px,
             70%
@@ -1090,9 +1015,12 @@ body{
     *,
     *::before,
     *::after{
-        animation-duration:0.01ms !important;
+
+        animation-duration:.01ms !important;
         animation-iteration-count:1 !important;
-        transition-duration:0.01ms !important;
+
+        transition-duration:.01ms !important;
+
         scroll-behavior:auto !important;
     }
 }
@@ -1105,12 +1033,16 @@ body{
 @keyframes fadeIn{
 
     from{
+
         opacity:0;
+
         transform:scale(.7);
     }
 
     to{
+
         opacity:1;
+
         transform:scale(1);
     }
 }
@@ -1119,12 +1051,16 @@ body{
 @keyframes slideUp{
 
     from{
+
         opacity:0;
+
         transform:translateY(30px);
     }
 
     to{
+
         opacity:1;
+
         transform:translateY(0);
     }
 }
