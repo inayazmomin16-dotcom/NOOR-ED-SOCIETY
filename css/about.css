@@ -11,59 +11,33 @@ html{
 }
 
 body{
-
     background:#1d1d1d;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     min-height:100vh;
-
     font-family:'Inter',sans-serif;
-
 }
 
 :root{
-
     --primary:#102B72;
-
     --secondary:#1E3F93;
-
     --dark:#081028;
-
     --gold1:#9A6618;
-
     --gold2:#B17018;
-
     --gold3:#F8A91F;
-
     --gold4:#F2D56B;
-
     --white:#ffffff;
-
-    --shadow:
-    0 15px 30px rgba(0,0,0,.22);
-
+    --shadow:0 15px 30px rgba(0,0,0,.22);
 }
 
 .phone{
-
     width:393px;
-
     min-height:852px;
-
-
     overflow:visible;
-
     position:relative;
-
     border-radius:28px;
-
     box-shadow:0 25px 60px rgba(0,0,0,.45);
-
     background:
     radial-gradient(
         circle at center,
@@ -72,7 +46,6 @@ body{
         rgba(74,112,255,.04) 35%,
         transparent 55%
     ),
-
     linear-gradient(
         180deg,
         #0A1030 0%,
@@ -81,404 +54,233 @@ body{
         #101D52 65%,
         #0A1030 100%
     );
-
-
-
 }
 
 .phone::-webkit-scrollbar{
-
     display:none;
-
 }
 
 .phone::before{
-
     content:"";
-
     position:absolute;
-
     left:50%;
-
     top:48%;
-
     transform:translate(-50%,-50%);
-
     width:320px;
-
     height:320px;
-
     border-radius:50%;
-
     background:rgba(75,120,255,.18);
-
     filter:blur(90px);
-
     pointer-events:none;
-
 }
 
 .phone>*{
-
     position:relative;
-
     z-index:2;
-
 }
 
 .header{
-
     width:100%;
-
     height:82px;
-
     background:#ffffff;
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     padding:0 18px;
-
     position:sticky;
-
     top:0;
-
     z-index:100;
-
     border-bottom:2px solid #ECECEC;
-
 }
 
 .header h1{
-
     font-size:22px;
-
     color:#102B72;
-
     font-weight:700;
-
 }
 
 .back-btn{
-
     width:42px;
-
     height:42px;
-
     border-radius:50%;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     text-decoration:none;
-
     background:#F3F3F3;
-
     color:#102B72;
-
     transition:.3s;
-
 }
 
 .back-btn:hover{
-
     background:#102B72;
-
     color:#fff;
-
 }
 
 .menu-btn{
-
-    width:45px;
-
-    height:45px;
-
-    border:none;
-
-    background:none;
-
-    cursor:pointer;
-
-}
-
-.menu-btn{
-
     width:42px;
-
     height:42px;
-
     border:none;
-
     border-radius:12px;
-
     background:linear-gradient(
         135deg,
         #102B72,
         #1C4DB3
     );
-
     color:#ffffff;
-
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
     font-size:20px;
-
     cursor:pointer;
-
     transition:.35s ease;
-
     box-shadow:0 8px 18px rgba(16,43,114,.25);
-
 }
 
 .menu-btn:hover{
-
     transform:translateY(-3px);
-
     background:linear-gradient(
         135deg,
         #1C4DB3,
         #102B72
     );
-
     box-shadow:0 12px 25px rgba(16,43,114,.35);
-
 }
 
 .menu-btn:active{
-
     transform:scale(.95);
-
 }
 
 .menu-btn i{
-
     transition:.35s;
-
 }
 
 .menu-btn:hover i{
-
     transform:rotate(90deg);
-
 }
 
 body{
-
     animation:fadePage .8s ease;
-
 }
 
 @keyframes fadePage{
-
     from{
-
         opacity:0;
-
         transform:translateY(25px);
-
     }
 
     to{
-
         opacity:1;
-
         transform:translateY(0);
-
     }
-
 }
 
 .school-image{
-
     padding:10px;
-
 }
 
 .school-image img{
-
     width:100%;
-
     height:220px;
-
     object-fit:cover;
-
     border-radius:22px;
-
-    border:4px solid  rgba(255, 255, 255, 0.674);
-
+    border:4px solid rgba(255,255,255,.674);
     box-shadow:0 18px 35px rgba(0,0,0,.35);
-
     transition:.4s;
-
 }
 
 .school-image img:hover{
-
     transform:scale(1.03);
-
     box-shadow:0 22px 45px rgba(0,0,0,.45);
-
 }
 
-
 .heritage{
-
     padding:5px 22px 25px;
-
     text-align:center;
-
 }
 
 .heritage h2{
-
-    font-size:34px;
-
-    color:#ffffff;
-
     font-size:36px;
-
-    font-family:Georgia, serif;
-
+    color:#ffffff;
+    font-family:Georgia,serif;
     margin-bottom:18px;
-
     font-weight:700;
-
 }
 
 .heritage p{
-
-
     color:#ECECEC;
-
     font-size:13px;
-
     line-height:20px;
 }
-   
 
 .udise{
-
     padding:0 20px;
-
 }
 
 .udise-box{
- background:linear-gradient(
+    background:linear-gradient(
         to bottom,
         #fefefe,
         #6e6868
     );
-    color:#20306B;
-
-    border-radius:35px;
-
-    padding:16px;
-
-    margin-bottom:16px;
-
-    text-align:center;
-
-    font-size:17px;
-
-    font-weight:700;
-
     color:#102B72;
-
+    border-radius:35px;
+    padding:16px;
+    margin-bottom:16px;
+    text-align:center;
+    font-size:17px;
+    font-weight:700;
     box-shadow:0 10px 25px rgba(0,0,0,.18);
-
     transition:.35s;
-
 }
 
 .udise-box:hover{
-
     transform:translateY(-5px);
-
 }
 
 .urdu-text{
-
     padding:20px 5px;
-
     text-align:center;
-
     font-size:28px;
-
     line-height:48px;
-
     font-weight:500;
-
     color:#b79012;
-
 }
 
-
 .facilities{
-
-     background:linear-gradient(
+    background:linear-gradient(
         90deg,
         var(--gold2),
         var(--gold3),
         var(--gold4),
         var(--gold2)
     );
-
     box-shadow:0 18px 35px rgba(0,0,0,.28);
-
     transition:.4s;
-
 }
 
 .facilities:hover{
-
     transform:translateY(-6px);
-
 }
 
 .facilities h2{
-
     text-align:center;
-
     color:#102B72;
-
     font-size:32px;
-
     margin-bottom:22px;
-
     font-weight:800;
-
 }
 
 .facilities ul{
-
     padding-left:22px;
-
 }
 
 .facilities li{
-
     margin-bottom:15px;
-
     font-size:17px;
-
     line-height:30px;
-
     color:#222;
-
     font-weight:600;
-
 }
 
 .school-image,
@@ -486,639 +288,872 @@ body{
 .udise,
 .urdu-text,
 .facilities{
-
     animation:fadeUp .8s ease;
-
 }
 
 @keyframes fadeUp{
-
     from{
-
         opacity:0;
-
         transform:translateY(35px);
-
     }
 
     to{
-
         opacity:1;
-
         transform:translateY(0);
-
     }
-
 }
 
 .chairman{
-
     padding:15px 5px;
-
 }
 
 .chairman h2{
-
-
-    color:white;
-
-    font-family:Georgia, serif;
-
-    font-size:32px;
-
     color:#ffffff;
-
+    font-family:Georgia,serif;
     font-size:32px;
-
     font-weight:700;
-
     margin-bottom:20px;
 }
 
-
 .chairman-card{
-
     background:#ffffff;
-
     border-radius:24px;
-
     padding:10px;
-
     min-height:550px;
-
     text-align:center;
-
-     border:5px solid #fbc104ed;
-
+    border:5px solid #fbc104ed;
     box-shadow:0 18px 35px rgba(0,0,0,.25);
-
     transition:.35s ease;
-
 }
 
 .chairman-card:hover{
-
     transform:translateY(-8px);
-
     box-shadow:0 25px 45px rgba(0,0,0,.35);
-
 }
 
 .chairman-card img{
-
     width:100%;
-
     height:450px;
-
     border-radius:18px;
-
     object-fit:cover;
-
     border:5px solid #000000;
-
     margin-bottom:18px;
-
 }
 
 .chairman-card h3{
-
     font-size:30px;
-
     color:#102B72;
-
     margin-bottom:8px;
-
 }
 
 .chairman-card h4{
-
     font-size:24px;
-
     color:#851642;
-
     font-weight:600;
-
     line-height:28px;
-
 }
+
 .staff{
-
     padding:25px 20px;
-
 }
 
 .staff h2{
-
     color:#ffffff;
-
     font-size:32px;
-
     margin-bottom:22px;
-
 }
 
 .staff-grid{
-
     display:grid;
-
     grid-template-columns:repeat(2,1fr);
-
     gap:18px;
-
 }
 
 .staff-card{
-
     background:#ffffff;
-
     border-radius:20px;
-
     overflow:hidden;
-
-    border:4px solid  rgba(100, 93, 93, 0.674);
-
+    border:4px solid rgba(100,93,93,.674);
     box-shadow:0 15px 30px rgba(0,0,0,.22);
-
     transition:.35s;
-
 }
 
 .staff-card:hover{
-
     transform:translateY(-8px);
-
     box-shadow:0 22px 40px rgba(0,0,0,.30);
-
 }
 
 .staff-card img{
-
     width:100%;
-
     height:380px;
-
     object-fit:cover;
-
     display:block;
-
     transition:.4s;
-
 }
 
 .staff-card:hover img{
-
     transform:scale(1.05);
-
 }
 
 .staff-card h3{
-
     padding:15px 12px 5px;
-
     font-size:20px;
-
     color:#102B72;
-
     text-align:center;
-
     font-weight:700;
-
 }
 
 .staff-card p{
-
     text-align:center;
-
     color:#343333;
-
     font-size:17px;
-
     font-weight:400;
-
     padding:0 10px;
-
 }
 
 .staff-card h4{
-
     text-align:center;
-
     color:#851642;
-
     font-size:20px;
-
     font-weight:700;
-
     padding:10px 10px 18px;
-
 }
 
 .staff-card,
 .chairman-card{
-
     animation:fadeUp .8s ease;
-
 }
 
 .show{
-
     opacity:1;
-
     transform:translateY(0);
-
 }
+
 @media(max-width:393px){
 
-.phone{
+    .phone{
+        width:100%;
+        border-radius:0;
+    }
 
-    width:100%;
+    .staff-grid{
+        grid-template-columns:1fr;
+    }
 
-    border-radius:0;
+    .header h1{
+        font-size:18px;
+    }
 
-}
-
-.staff-grid{
-
-    grid-template-columns:1fr;
-
-}
-
-.header h1{
-
-    font-size:18px;
-
-}
-
-
-.staff-card img{
-
-    height:380px;
+    .staff-card img{
+        height:380px;
+    }
 
 }
 
-}
 .footer{
-
     margin-top:30px;
-
     padding:30px 22px 20px;
-
     background:linear-gradient(
         180deg,
         #102B72 0%,
         #0C1F52 50%,
         #081028 100%
     );
-
     border-top-left-radius:25px;
     border-top-right-radius:25px;
-
     color:#ffffff;
-
 }
 
 .footer-top{
-
     display:flex;
-
     align-items:center;
-
     gap:15px;
-
     margin-bottom:30px;
-
 }
 
 .footer-logo{
-
-    width: 100px;
-
+    width:100px;
     height:100px;
-
     border-radius:50%;
-
     object-fit:cover;
-
     background:#fff;
-
     transition:.4s;
-
 }
 
 .footer-logo:hover{
-
     transform:rotate(8deg) scale(1.08);
-
 }
 
 .footer-heading h2{
-
     font-size:23px;
-
     font-weight:700;
-
     color:#ffffff;
-
 }
 
 .footer-heading p{
-
     margin-top:6px;
-
     font-size:14px;
-
     line-height:22px;
-
     color:#D6D6D6;
-
 }
 
 .footer-section{
-
     margin-bottom:28px;
-
 }
 
 .footer-section h3{
-
     font-size:22px;
-
     color:#F8D35F;
-
     margin-bottom:14px;
-
     border-left:4px solid #F8D35F;
-
     padding-left:10px;
-
 }
 
 .footer-section ul{
-
     list-style:none;
-
+    padding:0;
 }
 
 .footer-section li{
-
     margin-bottom:10px;
-
 }
 
 .footer-section a{
-
     text-decoration:none;
-
     color:#ECECEC;
-
     font-size:16px;
-
     transition:.3s;
-
 }
 
 .footer-section a:hover{
-
     color:#FFD54F;
-
     padding-left:8px;
-
 }
 
 .social-links{
-
     display:flex;
-
     flex-direction:column;
-
     gap:14px;
-
 }
 
 .social-links a{
-
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
 }
 
 .social-links i{
-
     font-size:22px;
-
     width:25px;
-
     transition:.3s;
-
 }
 
 .fa-facebook{
-
     color:#1877F2;
-
 }
 
 .fa-youtube{
-
     color:#FF0000;
-
 }
 
 .fa-instagram{
-
     color:#E1306C;
-
 }
 
 .social-links a:hover i{
-
     transform:scale(1.3);
-
 }
 
 .footer-section p{
-
     margin-bottom:15px;
-
     font-size:15px;
-
     line-height:25px;
-
     color:#ECECEC;
-
 }
 
 .footer-section p i{
-
     width:25px;
-
     color:#FFD54F;
-
 }
 
 .footer-section p a{
-
     color:#ECECEC;
-
 }
 
 .footer-section p a:hover{
-
     color:#FFD54F;
-
 }
 
 .footer-bottom{
-
     margin-top:15px;
-
     padding-top:18px;
-
     border-top:1px solid rgba(255,255,255,.18);
-
     text-align:center;
-
     font-size:14px;
-
     color:#CFCFCF;
-
 }
 
 .footer{
-
     animation:fadeFooter 1s ease;
-
 }
 
 @keyframes fadeFooter{
-
     from{
-
         opacity:0;
-
         transform:translateY(30px);
-
     }
 
     to{
-
         opacity:1;
-
         transform:translateY(0);
-
     }
-
 }
 
 .mobile-menu{
-
     position:absolute;
-
     top:72px;
-
     left:0;
-
     width:100%;
-
     background:#ffffff;
-
     display:none;
-
     flex-direction:column;
-
     border-radius:0 0 20px 20px;
-
     box-shadow:0 15px 30px rgba(0,0,0,.25);
-
     z-index:9999;
-
 }
 
 .mobile-menu.show{
-
     display:flex;
-
     animation:menuSlide .3s ease;
-
 }
 
 .mobile-menu a{
-
     text-decoration:none;
-
     color:#102B72;
-
     padding:16px 22px;
-
     display:flex;
-
     align-items:center;
-
     gap:12px;
-
     font-size:16px;
-
     font-weight:600;
-
     transition:.3s;
-
 }
 
 .mobile-menu a:hover{
-
     background:#F8D35F;
-
     padding-left:30px;
-
 }
 
 .mobile-menu a i{
-
     width:22px;
-
     text-align:center;
-
 }
 
 .mobile-menu .admin-link{
-
     background:#102B72;
-
     color:#ffffff;
-
 }
 
 .mobile-menu .admin-link i{
-
     color:#ffffff;
-
 }
 
 .mobile-menu .admin-link:hover{
-
     background:#081028;
-
 }
 
 @keyframes menuSlide{
-
     from{
-
         opacity:0;
-
         transform:translateY(-15px);
-
     }
 
     to{
-
         opacity:1;
-
         transform:translateY(0);
+    }
+}
 
+@media(min-width:769px){
+
+    html,
+    body{
+        width:100%;
+        min-height:100%;
+    }
+
+    body{
+        display:block;
+        min-height:100vh;
+        overflow-x:hidden;
+        overflow-y:auto;
+    }
+
+    .app-container{
+        width:100%;
+        min-height:100vh;
+        display:block;
+        padding:0;
+    }
+
+    .phone{
+        width:100%;
+        max-width:none;
+        min-height:100vh;
+        height:auto;
+        margin:0;
+        border-radius:0;
+        box-shadow:none;
+    }
+
+    .header{
+        height:90px;
+        padding:0 35px;
+    }
+
+    .header h1{
+        font-size:30px;
+    }
+
+    .back-btn{
+        width:48px;
+        height:48px;
+    }
+
+    .menu-btn{
+        width:48px;
+        height:48px;
+        font-size:22px;
+    }
+
+    .school-image{
+        padding:25px 40px 10px;
+    }
+
+    .school-image img{
+        width:100%;
+        height:420px;
+        object-fit:cover;
+        border-radius:26px;
+    }
+
+    .heritage{
+        padding:15px 60px 35px;
+    }
+
+    .heritage h2{
+        font-size:44px;
+        margin-bottom:20px;
+    }
+
+    .heritage p{
+        max-width:1000px;
+        margin:0 auto;
+        font-size:17px;
+        line-height:29px;
+    }
+
+    .udise{
+        padding:0 40px;
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:22px;
+    }
+
+    .udise-box{
+        margin-bottom:0;
+        padding:22px;
+        min-height:90px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:19px;
+    }
+
+    .urdu-text{
+        padding:30px 60px;
+        font-size:34px;
+        line-height:58px;
+    }
+
+    .facilities{
+        margin:0 40px;
+        padding:30px 40px;
+        border-radius:30px;
+    }
+
+    .facilities h2{
+        font-size:38px;
+        margin-bottom:25px;
+    }
+
+    .facilities ul{
+        max-width:1100px;
+        margin:0 auto;
+    }
+
+    .facilities li{
+        margin-bottom:16px;
+        font-size:19px;
+        line-height:32px;
+    }
+
+    .chairman{
+        padding:35px 40px;
+    }
+
+    .chairman h2{
+        font-size:40px;
+        margin-bottom:25px;
+        text-align:center;
+    }
+
+    .chairman-card{
+        max-width:850px;
+        margin:0 auto;
+        min-height:0;
+        padding:15px;
+    }
+
+    .chairman-card img{
+        width:100%;
+        height:560px;
+        object-fit:cover;
+        border-radius:20px;
+    }
+
+    .chairman-card h3{
+        font-size:34px;
+    }
+
+    .chairman-card h4{
+        font-size:26px;
+        line-height:34px;
+    }
+
+    .staff{
+        padding:40px;
+    }
+
+    .staff h2{
+        font-size:40px;
+        margin-bottom:28px;
+        text-align:center;
+    }
+
+    .staff-grid{
+        grid-template-columns:repeat(3,1fr);
+        gap:25px;
+        max-width:1450px;
+        margin:0 auto;
+    }
+
+    .staff-card{
+        border-radius:24px;
+    }
+
+    .staff-card img{
+        height:430px;
+    }
+
+    .staff-card h3{
+        font-size:22px;
+        padding:18px 12px 6px;
+    }
+
+    .staff-card p{
+        font-size:17px;
+    }
+
+    .staff-card h4{
+        font-size:21px;
+    }
+
+    .footer{
+        margin-top:40px;
+        padding:45px 50px 25px;
+        border-top-left-radius:30px;
+        border-top-right-radius:30px;
+    }
+
+    .footer-top{
+        gap:22px;
+        margin-bottom:40px;
+    }
+
+    .footer-logo{
+        width:120px;
+        height:120px;
+    }
+
+    .footer-heading h2{
+        font-size:28px;
+    }
+
+    .footer-heading p{
+        font-size:16px;
+        line-height:25px;
+    }
+
+    .footer-section{
+        margin-bottom:32px;
+    }
+
+    .footer-section h3{
+        font-size:24px;
+    }
+
+    .footer-section a{
+        font-size:17px;
+    }
+
+    .social-links{
+        flex-direction:row;
+        flex-wrap:wrap;
+        gap:24px;
+    }
+
+    .footer-section p{
+        font-size:16px;
+        line-height:27px;
+    }
+
+    .footer-bottom{
+        font-size:15px;
+    }
+
+    .mobile-menu{
+        top:90px;
+        width:320px;
+        right:35px;
+        left:auto;
+        border-radius:0 0 20px 20px;
+    }
+
+}
+
+@media(min-width:769px) and (max-width:1100px){
+
+    .app-container{
+        padding:0;
+    }
+
+    .phone{
+        width:100%;
+        max-width:none;
+        min-height:100vh;
+        margin:0;
+        border-radius:0;
+        box-shadow:none;
+    }
+
+    .header{
+        padding:0 25px;
+    }
+
+    .school-image{
+        padding:20px 25px 10px;
+    }
+
+    .school-image img{
+        height:320px;
+    }
+
+    .heritage{
+        padding:10px 35px 30px;
+    }
+
+    .udise{
+        padding:0 25px;
+    }
+
+    .facilities{
+        margin:0 25px;
+        padding:25px 30px;
+    }
+
+    .chairman{
+        padding:30px 25px;
+    }
+
+    .staff{
+        padding:30px 25px;
+    }
+
+    .staff-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .footer{
+        padding:40px 35px 25px;
+        grid-template-columns:1.3fr 1fr 1fr;
+        column-gap:40px;
+        row-gap:30px;
+    }
+
+}
+
+@media(min-width:1200px){
+
+    .footer{
+        display:grid;
+        grid-template-columns:1.45fr 1.05fr 1fr 1fr;
+        column-gap:70px;
+        row-gap:35px;
+        align-items:start;
+        padding:65px 7vw 28px;
+        border-top-left-radius:0;
+        border-top-right-radius:0;
+    }
+
+    .footer > .footer-top{
+        grid-column:1;
+        grid-row:1;
+        display:flex;
+        align-items:center;
+        gap:22px;
+        margin:0;
+    }
+
+    .footer > .footer-section:nth-child(2){
+        grid-column:2;
+        grid-row:1;
+        margin:0;
+    }
+
+    .footer > .footer-section:nth-child(3){
+        grid-column:3;
+        grid-row:1;
+        margin:0;
+    }
+
+    .footer > .footer-section:nth-child(4){
+        grid-column:4;
+        grid-row:1;
+        margin:0;
+    }
+
+    .footer > .footer-bottom{
+        grid-column:1 / -1;
+        grid-row:2;
+        width:100%;
+        margin-top:15px;
+    }
+
+    .footer-logo{
+        width:145px;
+        height:145px;
+    }
+
+    .footer-heading h2{
+        font-size:32px;
+        line-height:1.15;
+    }
+
+    .footer-heading p{
+        font-size:16px;
+        line-height:25px;
+    }
+
+    .footer-section h3{
+        font-size:24px;
+        margin-bottom:18px;
+    }
+
+    .footer-section a{
+        font-size:17px;
+    }
+
+    .footer-section p{
+        font-size:16px;
+        line-height:27px;
+    }
+
+    .social-links{
+        flex-direction:column;
+        gap:14px;
+    }
+
+}
+
+@media(min-width:1600px){
+
+    .phone{
+        width:100%;
+        max-width:none;
+        min-height:100vh;
+        border-radius:0;
+        box-shadow:none;
+    }
+
+    .school-image{
+        padding:30px 55px 15px;
+    }
+
+    .school-image img{
+        height:500px;
+    }
+
+    .heritage{
+        padding-left:80px;
+        padding-right:80px;
+    }
+
+    .heritage h2{
+        font-size:48px;
+    }
+
+    .heritage p{
+        max-width:1200px;
+        font-size:18px;
+        line-height:31px;
+    }
+
+    .udise{
+        padding-left:55px;
+        padding-right:55px;
+        gap:28px;
+    }
+
+    .urdu-text{
+        font-size:38px;
+        line-height:64px;
+    }
+
+    .facilities{
+        margin-left:55px;
+        margin-right:55px;
+        padding:35px 55px;
+    }
+
+    .chairman{
+        padding-left:55px;
+        padding-right:55px;
+    }
+
+    .staff{
+        padding-left:55px;
+        padding-right:55px;
+    }
+
+    .staff-grid{
+        grid-template-columns:repeat(4,1fr);
+        max-width:1600px;
+    }
+
+    .staff-card img{
+        height:440px;
+    }
+
+    .footer{
+        padding-left:8vw;
+        padding-right:8vw;
+        column-gap:90px;
+    }
+
+    .footer-logo{
+        width:145px;
+        height:145px;
     }
 
 }
