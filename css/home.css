@@ -2571,3 +2571,141 @@ html{
         height:145px;
     }
 }
+
+
+/* ===== GOOGLE MAP - SCHOOL LOCATION ===== */
+
+.address-card {
+    width: 90%;
+    max-width: 750px;
+    height: auto;
+    min-height: unset;
+    margin: 25px auto 35px;
+    padding: 28px;
+    background: linear-gradient(145deg, #ffffff, #edf1fb);
+    border: 1px solid rgba(16, 43, 114, 0.15);
+    border-radius: 22px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    overflow: hidden;
+}
+
+.address-heading .location-icon {
+    display: inline-flex;
+    width: 55px;
+    height: 55px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #102B72;
+    color: #F8D35F;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.address-heading h2 {
+    color: #102B72;
+    font-size: 30px;
+    margin-bottom: 6px;
+}
+
+.address-heading > p {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.school-address {
+    margin-bottom: 20px;
+}
+
+.school-address p {
+    color: #202764;
+    font-size: 15px;
+    line-height: 1.8;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.school-address i {
+    color: #B17018;
+    margin-right: 5px;
+}
+
+.school-address .coordinates {
+    margin-top: 8px;
+    color: #64748b;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.map-container {
+    width: 100%;
+    height: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid #d9e0f0;
+    box-shadow: 0 8px 22px rgba(16, 43, 114, 0.15);
+    margin-bottom: 20px;
+}
+
+.map-container iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.map-directions-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #102B72, #1E3F93);
+    color: #ffffff;
+    border: 2px solid #F2D56B;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.map-directions-btn:visited {
+    color: #ffffff;
+}
+
+.map-directions-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(16, 43, 114, 0.25);
+}
+
+@media (max-width: 768px) {
+    .address-card {
+        width: 100%;
+        padding: 20px 15px;
+        margin: 20px auto 25px;
+        border-radius: 18px;
+    }
+
+    .address-heading h2 {
+        font-size: 25px;
+    }
+
+    .map-container {
+        height: 250px;
+        border-radius: 13px;
+    }
+
+    .school-address p {
+        font-size: 14px;
+    }
+
+    .map-directions-btn {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
